@@ -5,5 +5,8 @@
     "express": "2.5.9",
     "jade": "0.26.0",
     "twilio": "git://github.com/affinitybridge/node-twilio.git#8eb0b392ea"
+  },
+  "engines": {
+    "node": "0.6.18"
   }
 }
