@@ -2,6 +2,7 @@ var express = require('express'),
     //TwilioClient = require('twilio').Client,
     Capability = require('twilio').Capability,
     represent = require('represent');
+    campaigns = require('./campaigns');
 
 var app = express.createServer();
 
@@ -25,13 +26,37 @@ app.get('/', function (req, res) {
   });
 });
 
-app.get('/representatives/:lat/:lon', function (req, res) {
-  //if (req.xhr) {
-  represent.representativesLatLon(req.params.lat, req.params.lon, function (reps) {
-    var processedReps = processReps(reps);
-    res.json(processedReps);
+app.get('/campaign/:id', function (req, res) {
+  campaigns.find(req.params.id, function(campaign) {
+    if (campaign) {
+      res.render('campaign', {
+        token: token,
+        layout: 'campaign_layout',
+        campaign: campaign
+      });
+    }
+    else {
+      res.send('404', 404);
+    }
   });
-  //}
+});
+
+app.get('/representatives/:lat/:lon', function (req, res) {
+  represent.representativesLatLon(req.params.lat, req.params.lon, function (reps) {
+    if (reps && reps.objects.length) {
+      var processedReps = processReps(reps);
+      res.render('representatives', {
+        layout: false,
+        reps: processedReps
+      });
+    }
+    else if (null === reps) {
+      res.send('The representatives database is unreachable at the moment. Please try again later.');
+    }
+    else if (0 === reps.objects.length) {
+      res.send('No representatives found for your current location.');
+    }
+  });
 });
 
 app.get('/twiml', function (req, res) {
@@ -61,7 +86,8 @@ function processReps(reps) {
         name: rep.name,
         title: rep.district_name + ' ' + rep.elected_office + ' at ' + rep.representative_set_name,
         phone: phone,
-        email: rep.email
+        email: rep.email,
+        photo: rep.photo_url
       }
     );
   }

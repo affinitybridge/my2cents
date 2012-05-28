@@ -1,0 +1,14 @@
+each rep in reps
+  h2 #{rep.name}
+  ul
+    li #{rep.title}
+    if rep.photo
+      li
+        img(src='#{rep.photo}', width='75')
+    if rep.phone
+      li #{rep.phone}
+        button.call(onclick="call('#{rep.phone}', this);") Call
+        button.hangup(onclick='hangup(this);') Hangup
+    if rep.email
+      li
+        a(href='mailto:#{rep.email}') Email
