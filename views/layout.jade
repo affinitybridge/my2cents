@@ -12,21 +12,25 @@ html
       Twilio.Device.setup("#{token}");
 
       Twilio.Device.ready(function (device) {
-        $("#log").append("Ready");
+        callLog("Ready");
       });
 
       Twilio.Device.error(function (error) {
-        $("#log").append("Error: " + error.message);
+        callLog("Error: " + error.message);
       });
 
       Twilio.Device.connect(function (conn) {
-        $("#log").append("Successfully established call");
+        callLog("Successfully established call");
       });
 
       Twilio.Device.disconnect(function (conn) {
-        $("#log").append("Call ended");
+        callLog("Call ended");
       });
  
+      function callLog(text) {
+        $("#log").append('<p>' + text + '</p>');
+      }
+
       function call() {
         // get the phone number to connect the call to
         params = {"PhoneNumber": $("#number").val()};
