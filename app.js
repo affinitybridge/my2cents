@@ -1,6 +1,12 @@
-var express = require('express');
+var express = require('express'),
+    //TwilioClient = require('twilio').Client,
+    Capability = require('twilio').Capability;
 
 var app = express.createServer();
+
+var cap = new Capability(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
+cap.allowClientOutgoing('APabe7650f654fc34655fc81ae71caa3ff');
+var token = cap.generateToken();
 
 app.configure(function() {
   app.set('views', __dirname + '/views');
@@ -13,7 +19,9 @@ app.configure(function() {
 });
 
 app.get('/', function (req, res) {
-  res.render('root');
+  res.render('root', {
+    token: token
+  });
 });
 
 var port = process.env.PORT || 3000;
