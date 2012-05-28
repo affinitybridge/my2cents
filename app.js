@@ -5,7 +5,7 @@ var express = require('express'),
 var app = express.createServer();
 
 var cap = new Capability(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
-cap.allowClientOutgoing('APabe7650f654fc34655fc81ae71caa3ff');
+cap.allowClientOutgoing(process.env.TWILIO_APP_SID);
 var token = cap.generateToken();
 
 app.configure(function() {
@@ -21,6 +21,16 @@ app.configure(function() {
 app.get('/', function (req, res) {
   res.render('root', {
     token: token
+  });
+});
+
+app.get('/twiml', function (req, res) {
+  var number = req.param('PhoneNumber');
+  res.contentType('text/xml');
+  res.render('twiml', {
+    layout: false,
+    number: number,
+    callerID: process.env.TWILIO_CALLER_ID
   });
 });
 
