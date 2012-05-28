@@ -1,0 +1,9 @@
+{
+  "name": "twilio_client",
+  "version" : "0.0.1",
+  "dependencies": {
+    "express": "2.5.9",
+    "jade": "0.26.0",
+    "twilio": "git://github.com/affinitybridge/node-twilio.git#8eb0b392ea"
+  }
+}
