@@ -22,8 +22,7 @@ app.configure(function() {
 
 app.get('/', function (req, res) {
   res.render('root', {
-    title: 'Project Codename',
-    token: token
+    title: 'Project Codename'
   });
 });
 
@@ -77,7 +76,7 @@ function processReps(reps) {
     var rep = reps.objects[i];
     var phone = '';
     for (o in rep.offices) {
-      if (rep.offices[o].tel && (rep.offices[o].type.match(/Constituency/i))) {
+      if (rep.offices[o].tel && rep.offices[o].type.match(/Constituency/i)) {
         var phone = rep.offices[o].tel;
         break;
       }
