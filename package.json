@@ -1,6 +1,17 @@
 {
-  "name": "twilio_client",
+  "name": "project_codename",
+  "description": "Twilio powered campaign widget using represent.opennorth.ca API",
+  "homepage": "http://github.com/affinitybridge/projectcodename",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/affinitybridge/projectcodename.git"
+  },
   "version" : "0.0.1",
+  "author": {
+    "name": "Affinity Bridge",
+    "email": "info@affinitybridge.com",
+    "url": "http://affinitybridge.com"
+  },
   "dependencies": {
     "express": "2.5.9",
     "jade": "0.26.0",
