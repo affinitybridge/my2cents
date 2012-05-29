@@ -4,7 +4,7 @@ html
     meta(charset='utf-8')
     meta(name='robots', content='index')
     link(rel='stylesheet', href='/site.css')
-    title Example
+    title= campaign.title
     script(src='http://static.twilio.com/libs/twiliojs/1.0/twilio.min.js')
     script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')
     script(src='/campaign.js')
@@ -34,8 +34,7 @@ html
       function call(number, clickedButton) {
         $(clickedButton).parent().find(".hangup").show();
         $(clickedButton).hide();
-        // get the phone number to connect the call to
-        console.log("The number called: " + number);
+        showScript();
         params = {"PhoneNumber": number};
         Twilio.Device.connect(params);
       }
@@ -43,11 +42,16 @@ html
       function hangup(clickedButton) {
         $(clickedButton).parent().find(".call").show();
         $(clickedButton).hide();
+        hideScript();
         Twilio.Device.disconnectAll();
       }
 
       function showScript() {
         $("#phonescript").show();
       }
+
+      function hideScript() {
+        $("#phonescript").hide();
+      }
     body
-      .container!= 
+      .container!= body

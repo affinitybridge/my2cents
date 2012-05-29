@@ -3,42 +3,8 @@ html
   head
     meta(charset='utf-8')
     meta(name='robots', content='index')
-    link(href='http://static0.twilio.com/packages/quickstart/client.css')
-    title Example
-    script(src='http://static.twilio.com/libs/twiliojs/1.0/twilio.min.js')
+    title= title
     script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')
     script(src='/site.js')
-    script(type='text/javascript')
-      Twilio.Device.setup("#{token}");
-
-      Twilio.Device.ready(function (device) {
-        callLog("Ready");
-      });
-
-      Twilio.Device.error(function (error) {
-        callLog("Error: " + error.message);
-      });
-
-      Twilio.Device.connect(function (conn) {
-        callLog("Successfully established call");
-      });
-
-      Twilio.Device.disconnect(function (conn) {
-        callLog("Call ended");
-      });
- 
-      function callLog(text) {
-        $("#log").append('<p>' + text + '</p>');
-      }
-
-      function call() {
-        // get the phone number to connect the call to
-        params = {"PhoneNumber": $("#number").val()};
-        Twilio.Device.connect(params);
-      }
-
-      function hangup() {
-        Twilio.Device.disconnectAll();
-      }
     body
       .container!= body

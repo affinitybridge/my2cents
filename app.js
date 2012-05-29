@@ -22,6 +22,7 @@ app.configure(function() {
 
 app.get('/', function (req, res) {
   res.render('root', {
+    title: 'Project Codename',
     token: token
   });
 });
