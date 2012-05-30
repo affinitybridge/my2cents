@@ -1,7 +1,7 @@
 var express = require('express'),
     //TwilioClient = require('twilio').Client,
     Capability = require('twilio').Capability,
-    represent = require('represent');
+    represent = require('represent'),
     campaigns = require('./campaigns');
 
 var app = express.createServer();
