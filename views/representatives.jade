@@ -8,7 +8,7 @@ each rep in reps
     if rep.phone
       li #{rep.phone}
         button.call(onclick="call('#{rep.phone}', this);") Call
-        button.hangup(onclick='hangup(this);') Hangup
+        button.hangup(onclick="hangup(this);") Hangup
     if rep.email
       li
         a(href='mailto:#{rep.email}') Email
