@@ -16,51 +16,52 @@ function geolocationSuccess(position) {
     }
   });
 }
-      Twilio.Device.setup(TwilioConfig.CapabilityToken);
 
-      Twilio.Device.ready(function (device) {
-        callLog("Ready");
-      });
+Twilio.Device.setup(TwilioConfig.CapabilityToken);
 
-      Twilio.Device.error(function (error) {
-        callLog("Error: " + error.message);
-      });
+Twilio.Device.ready(function (device) {
+  callLog("Ready");
+});
 
-      Twilio.Device.connect(function (conn) {
-        callLog("Successfully established call");
-      });
+Twilio.Device.error(function (error) {
+  callLog("Error: " + error.message);
+});
 
-      Twilio.Device.disconnect(function (conn) {
-        callLog("Call ended");
-      });
+Twilio.Device.connect(function (conn) {
+  callLog("Successfully established call");
+});
 
-      function callLog(text) {
-        $("#log").append('<p>' + text + '</p>');
-      }
+Twilio.Device.disconnect(function (conn) {
+  callLog("Call ended");
+});
 
-      function call(number, clickedButton) {
-        $(clickedButton).parent().find(".hangup").show();
-        $(clickedButton).hide();
-        showScript();
-        if (TwilioConfig.DemoNumber) {
-          callLog("DEMO MODE: Instead of calling " + number + ", this demo number gets called: " + TwilioConfig.DemoNumber);
-          number = TwilioConfig.DemoNumber;
-        }
-        params = {"PhoneNumber":number, "CampaignId":TwilioConfig.CampaignId};
-        Twilio.Device.connect(params);
-      }
+function callLog(text) {
+  $("#log").append('<p>' + text + '</p>');
+}
 
-      function hangup(clickedButton) {
-        $(clickedButton).parent().find(".call").show();
-        $(clickedButton).hide();
-        hideScript();
-        Twilio.Device.disconnectAll();
-      }
+function call(number, clickedButton) {
+  $(clickedButton).parent().find(".hangup").show();
+  $(clickedButton).hide();
+  showScript();
+  if (TwilioConfig.DemoNumber) {
+    callLog("DEMO MODE: Instead of calling " + number + ", this demo number gets called: " + TwilioConfig.DemoNumber);
+    number = TwilioConfig.DemoNumber;
+  }
+  params = {"PhoneNumber":number, "CampaignId":TwilioConfig.CampaignId};
+  Twilio.Device.connect(params);
+}
 
-      function showScript() {
-        $("#phonescript").show();
-      }
+function hangup(clickedButton) {
+  $(clickedButton).parent().find(".call").show();
+  $(clickedButton).hide();
+  hideScript();
+  Twilio.Device.disconnectAll();
+}
 
-      function hideScript() {
-        $("#phonescript").hide();
-      }
+function showScript() {
+  $("#phonescript").show();
+}
+
+function hideScript() {
+  $("#phonescript").hide();
+}
