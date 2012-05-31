@@ -1,10 +1,10 @@
 !!! xml
-response
+Response
   if armed
-    dial(callerId="#{callerID}")
-      number #{number}
+    Dial(callerId="#{callerID}")
+      Number #{number}
   else
-    say This phone application is currently unavailable.
+    Say This phone application is currently unavailable.
       | The request to call #{number} can not be fulfilled.
       | For help on this matter, please refer to the contact
       | information provided elsewhere on this web site.
