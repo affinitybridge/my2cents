@@ -5,11 +5,13 @@ html
     meta(name='robots', content='index')
     link(rel='stylesheet', href='/site.css')
     title= campaign.title
+  body
+    .container!= body
     script(src='http://static.twilio.com/libs/twiliojs/1.0/twilio.min.js')
     script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')
-    script(src='/campaign.js')
     script(type='text/javascript')
       var TwilioConfig = !{twilioConfigJson};
+    script(src='/campaign.js')
     script(type='text/javascript')
       Twilio.Device.setup(TwilioConfig.CapabilityToken);
 
@@ -59,5 +61,3 @@ html
       function hideScript() {
         $("#phonescript").hide();
       }
-    body
-      .container!= body
