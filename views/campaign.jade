@@ -2,11 +2,8 @@ h1 #{campaign.title}
 #representatives
 #footer
   h3 Phone Script
-  a(href='#', onclick='showScript(); return false;') Show
-  = " / "
-  a(href='#', onclick='hideScript(); return false;') Hide
-  = " "
-  | phone script
+  button.showScript Show
+  button.hideScript Hide
   #phonescript
     p #{campaign.script}
   #log

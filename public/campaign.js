@@ -77,16 +77,28 @@ function hangup(clickedButton) {
 
 function showScript() {
   $("#phonescript").slideDown();
+  $(".showScript").hide();
+  $(".hideScript").show();
 }
 
 function hideScript() {
   $("#phonescript").slideUp();
+  $(".showScript").show();
+  $(".hideScript").hide();
 }
 
-$("#representatives").on("click", "button.call", function(event){
+$("#representatives").on("click", "button.call", function(event) {
 	call($(this).attr('data-phone'), this);
 });
 
-$("#representatives").on("click", "button.hangup", function(event){
+$("#representatives").on("click", "button.hangup", function(event) {
 	hangup(this);
 });
+
+$(".showScript").on("click", function(event) {
+	showScript();
+}).button();
+
+$(".hideScript").on("click", function(event) {
+	hideScript();
+}).button();

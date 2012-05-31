@@ -9,6 +9,7 @@ each rep in reps
         li #{rep.title}
         if rep.phone
           li #{rep.phone}
+            = " "
             button.call(data-phone="#{rep.phone}") Call
             button.hangup Hangup
         if rep.email

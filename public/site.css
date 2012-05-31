@@ -1,4 +1,4 @@
-div#phonescript, .hangup {
+div#phonescript, .hangup, .hideScript {
   display: none;
 }
 
