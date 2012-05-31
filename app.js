@@ -1,4 +1,5 @@
 var express = require('express'),
+    util = require('util'),
     //TwilioClient = require('twilio').Client,
     Capability = require('twilio').Capability,
     represent = require('represent'),
@@ -29,8 +30,13 @@ app.get('/', function (req, res) {
 app.get('/campaign/:id', function (req, res) {
   campaigns.find(req.params.id, function(campaign) {
     if (campaign) {
+      var twilioConfig = {
+        CapabilityToken: token,
+        DemoNumber: process.env.DEMO_NUMBER,
+        CampaignId: req.params.id
+      };
       res.render('campaign', {
-        token: token,
+        twilioConfigJson: util.format('%j', twilioConfig),
         layout: 'campaign_layout',
         campaign: campaign
       });
@@ -61,11 +67,15 @@ app.get('/representatives/:lat/:lon', function (req, res) {
 
 app.get('/twiml', function (req, res) {
   var number = req.param('PhoneNumber');
+  if (process.env.DEMO_NUMBER) {
+    number = process.env.DEMO_NUMBER;
+  }
   res.contentType('text/xml');
   res.render('twiml', {
     layout: false,
     number: number,
-    callerID: process.env.TWILIO_CALLER_ID
+    callerID: process.env.TWILIO_CALLER_ID,
+    armed: 'YES' !== process.env.DEMO_UNARMED_YES_NO,
   });
 });
 

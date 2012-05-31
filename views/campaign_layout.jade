@@ -9,7 +9,9 @@ html
     script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')
     script(src='/campaign.js')
     script(type='text/javascript')
-      Twilio.Device.setup("#{token}");
+      var TwilioConfig = !{twilioConfigJson};
+    script(type='text/javascript')
+      Twilio.Device.setup(TwilioConfig.CapabilityToken);
 
       Twilio.Device.ready(function (device) {
         callLog("Ready");
@@ -35,7 +37,11 @@ html
         $(clickedButton).parent().find(".hangup").show();
         $(clickedButton).hide();
         showScript();
-        params = {"PhoneNumber": number};
+        if (TwilioConfig.DemoNumber) {
+          callLog("DEMO MODE: Instead of calling " + number + ", this demo number gets called: " + TwilioConfig.DemoNumber);
+          number = TwilioConfig.DemoNumber;
+        }
+        params = {"PhoneNumber":number, "CampaignId":TwilioConfig.CampaignId};
         Twilio.Device.connect(params);
       }
 

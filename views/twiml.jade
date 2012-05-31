@@ -1,5 +1,11 @@
-<Response>
-<Dial callerId="#{callerID}">
-<Number>#{number}</Number>
-</Dial>
-</Response>
+!!! xml
+response
+  if armed
+    dial(callerId="#{callerID}")
+      number #{number}
+  else
+    say This phone application is currently unavailable.
+      | The request to call #{number} can not be fulfilled.
+      | For help on this matter, please refer to the contact
+      | information provided elsewhere on this web site.
+      | Thank you! Good bye!
