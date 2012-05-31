@@ -3,8 +3,11 @@ html
   head
     meta(charset='utf-8')
     meta(name='robots', content='index')
-    title= title
-    script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')
-    script(src='/site.js')
-    body
-      .container!= body
+    block moreStyles
+    link(rel='stylesheet', href='//fonts.googleapis.com/css?family=Oleo+Script|Open+Sans:400,700&subset=latin,latin-ext')
+    link(rel='stylesheet', href='/site.css')
+    title= pageTitle
+  body
+    .container!= body
+    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+    block moreScripts

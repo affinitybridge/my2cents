@@ -1,5 +1,13 @@
 h1 #{campaign.title}
 #representatives
-a(href='#', onclick='showScript(); return false;') Show phone script
-#phonescript #{campaign.script}
-#log
+#footer
+  h3 Phone Script
+  a(href='#', onclick='showScript(); return false;') Show
+  = " / "
+  a(href='#', onclick='hideScript(); return false;') Hide
+  = " "
+  | phone script
+  #phonescript
+    p #{campaign.script}
+  #log
+    h3 Event Log

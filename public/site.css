@@ -1,3 +1,60 @@
 div#phonescript, .hangup {
   display: none;
 }
+
+body, html {
+  margin: 0;
+}
+
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oleo Script', cursive;
+}
+
+.rep {
+  border: 1px solid #999;
+  border-radius: 7px;
+  box-shadow: rgba(0,0,0,0.4) 3px 3px 10px 0px;
+  float: left;
+  margin: 5px;
+  min-height: 150px;
+  position: relative;
+  width: 30%;
+}
+
+.rep .photo,
+.rep .photo img {
+  width: 75px;
+}
+
+.rep .photo {
+  float: left;
+  margin: 5px;
+  position: relative;
+}
+
+.rep .info {
+  margin-top: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  margin-left: 85px;
+}
+
+.rep .info h3,
+.rep .info ul {
+  margin: 0px;
+}
+
+.rep .info ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+#footer {
+  clear: both;
+  margin: 5px;
+}

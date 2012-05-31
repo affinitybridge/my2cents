@@ -1,2 +1,5 @@
-h1= title
-
+h1= pageTitle
+ul
+  each campaign in campaigns
+    li
+      a(href="campaign/#{campaign.id}") #{campaign.title}

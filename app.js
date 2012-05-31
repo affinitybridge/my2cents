@@ -1,15 +1,9 @@
 var express = require('express'),
-    util = require('util'),
-    //TwilioClient = require('twilio').Client,
     Capability = require('twilio').Capability,
     represent = require('represent'),
     campaigns = require('./campaigns');
 
 var app = express.createServer();
-
-var cap = new Capability(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
-cap.allowClientOutgoing(process.env.TWILIO_APP_SID);
-var token = cap.generateToken();
 
 app.configure(function() {
   app.set('views', __dirname + '/views');
@@ -22,21 +16,28 @@ app.configure(function() {
 });
 
 app.get('/', function (req, res) {
-  res.render('root', {
-    title: 'Project Codename'
+  campaigns.findAll(function(campaigns) {
+    res.render('root', {
+      pageTitle: 'Project Codename',
+      campaigns: campaigns
+    });
   });
 });
 
 app.get('/campaign/:id', function (req, res) {
   campaigns.find(req.params.id, function(campaign) {
     if (campaign) {
+      var cap = new Capability(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
+      cap.allowClientOutgoing(process.env.TWILIO_APP_SID);
+      var token = cap.generateToken();
       var twilioConfig = {
         CapabilityToken: token,
         DemoNumber: process.env.DEMO_NUMBER,
         CampaignId: req.params.id
       };
       res.render('campaign', {
-        twilioConfigJson: util.format('%j', twilioConfig),
+        pageTitle: campaign.title,
+        twilioConfigJson: JSON.stringify(twilioConfig),
         layout: 'campaign_layout',
         campaign: campaign
       });

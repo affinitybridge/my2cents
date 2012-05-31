@@ -1,7 +1,7 @@
 if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(geolocationSuccess, console.log);
+  navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError);
 } else {
-  console.log('html geolocation not supported');
+  callLog('Geolocation Error: HTML 5 Geolocation not supported.');
 }
 
 function geolocationSuccess(position) {
@@ -10,11 +10,28 @@ function geolocationSuccess(position) {
     type : "GET",
     success: function(data) {
       $("#representatives").html(data);
+      $("button", "#representatives").button();
     },
     error: function(jqXHR, textStatus, errorThrown) {
-      $("#representatives").text('Error: ' + textStatus + " " + errorThrown);
+      callLog('Representatives DB Error: ' + textStatus + ' ' + errorThrown);
     }
   });
+}
+
+function geolocationError(error) {
+  var codeStr = 'Unknown error';
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      codeStr = 'Permission denied';
+      break;
+    case error.POSITION_UNAVAILABLE:
+      codeStr = 'Position unavailable';
+      break;
+    case error.TIMEOUT:
+      codeStr = 'Timeout';
+      break;
+  }
+  callLog('Geolocation Error: ' + codeStr + '. ' + error.message);
 }
 
 Twilio.Device.setup(TwilioConfig.CapabilityToken);
@@ -24,7 +41,7 @@ Twilio.Device.ready(function (device) {
 });
 
 Twilio.Device.error(function (error) {
-  callLog("Error: " + error.message);
+  callLog("Twilio Error: " + error.message);
 });
 
 Twilio.Device.connect(function (conn) {
@@ -33,6 +50,9 @@ Twilio.Device.connect(function (conn) {
 
 Twilio.Device.disconnect(function (conn) {
   callLog("Call ended");
+  hideScript();
+  $('.call').show();
+  $('.hangup').hide();
 });
 
 function callLog(text) {
@@ -40,8 +60,8 @@ function callLog(text) {
 }
 
 function call(number, clickedButton) {
-  $(clickedButton).parent().find(".hangup").show();
-  $(clickedButton).hide();
+  $(clickedButton).parent().find('.hangup').show();
+  $('.call').hide();
   showScript();
   if (TwilioConfig.DemoNumber) {
     callLog("DEMO MODE: Instead of calling " + number + ", this demo number gets called: " + TwilioConfig.DemoNumber);
@@ -52,16 +72,21 @@ function call(number, clickedButton) {
 }
 
 function hangup(clickedButton) {
-  $(clickedButton).parent().find(".call").show();
-  $(clickedButton).hide();
-  hideScript();
   Twilio.Device.disconnectAll();
 }
 
 function showScript() {
-  $("#phonescript").show();
+  $("#phonescript").slideDown();
 }
 
 function hideScript() {
-  $("#phonescript").hide();
+  $("#phonescript").slideUp();
 }
+
+$("#representatives").on("click", "button.call", function(event){
+	call($(this).attr('data-phone'), this);
+});
+
+$("#representatives").on("click", "button.hangup", function(event){
+	hangup(this);
+});
