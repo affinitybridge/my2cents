@@ -1,11 +1,26 @@
 var express = require('express'),
     Capability = require('twilio').Capability,
     represent = require('represent'),
-    campaigns = require('./campaigns');
+    campaigns = require('./campaigns'),
+    stylus = require('stylus');
 
 var app = express.createServer();
 
+// stylus compile function
+function compile(str, path) {
+  return stylus(str)
+    .set('filename', path)
+    .set('compress', true)
+};
+
+
 app.configure(function() {
+  app.use(stylus.middleware({
+    src: __dirname + '/styles',
+    // @TODO: figure out why we can't put styles in /public/stylesheets
+    dest: __dirname + '/public',
+    compile: compile
+  }));
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.logger());

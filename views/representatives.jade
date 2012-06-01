@@ -1,8 +1,7 @@
 each rep in reps
   .rep
     if rep.photo
-      .photo
-        img(src='#{rep.photo}')
+      img.photo(src='#{rep.photo}')
     .info
       h3 #{rep.name}
       ul
