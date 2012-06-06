@@ -57,7 +57,7 @@ app.get('/', function (req, res) {
   });
 });
 
-// A campaign widget
+// A campaign widget.
 app.get('/campaign/:id', function (req, res) {
   // Load the campaign. See `find()` in `campaigns.js`.
   campaigns.find(req.params.id, function(campaign) {
@@ -82,6 +82,23 @@ app.get('/campaign/:id', function (req, res) {
     else {
       // If no campaign found display a 404.
       res.send('404', 404);
+    }
+  });
+});
+
+// Display a campaign widget in an iframe.
+app.get('/campaign/:id/iframe', function (req, res) {
+  // Load the campaign. See `find()` in `campaigns.js`.
+  campaigns.find(req.params.id, function(campaign) {
+    if (campaign) {
+      res.render('campaign_iframe', {
+        campaignId: campaign.id,
+        pageTitle: campaign.title
+      });
+    }
+    else {
+      // If no campaign found display a 404.
+      res.send('404', 404)
     }
   });
 });

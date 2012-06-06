@@ -3,6 +3,7 @@
 Create a .env file with the following content
 
     NODE_ENV=development
+    APP_URL=http://localhost:5000
     TWILIO_SID=ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     TWILIO_TOKEN=yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
     TWILIO_APP_SID=APzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
