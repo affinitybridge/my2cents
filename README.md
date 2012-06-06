@@ -2,6 +2,7 @@
 
 Create a .env file with the following content
 
+    NODE_ENV=development
     TWILIO_SID=ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     TWILIO_TOKEN=yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
     TWILIO_APP_SID=APzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz

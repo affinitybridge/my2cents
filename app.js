@@ -21,7 +21,10 @@ var app = express.createServer();
 function compile(str, path) {
   return stylus(str)
     .set('filename', path)
-    .set('compress', true)
+    // Comment generated CSS when not on production
+    .set('linenos', process.env.NODE_ENV !== 'production')
+    // Compress generated CSS on production
+    .set('compress', process.env.NODE_ENV == 'production')
 };
 
 // Configure Express application.
