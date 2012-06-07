@@ -62,7 +62,7 @@ function callLog(text) {
 function call(number, clickedButton) {
   $(clickedButton).parent().find('.hangup').show();
   $('.call').hide();
-  showScript();
+  showScript(clickedButton);
   if (TwilioConfig.DemoNumber) {
     callLog("DEMO MODE: Instead of calling " + number + ", this demo number gets called: " + TwilioConfig.DemoNumber);
     number = TwilioConfig.DemoNumber;
@@ -75,16 +75,15 @@ function hangup(clickedButton) {
   Twilio.Device.disconnectAll();
 }
 
-function showScript() {
-  $("#phonescript").slideDown();
-  $(".showScript").hide();
-  $(".hideScript").show();
+function showScript(clickedButton) {
+  var id = $(clickedButton).parents('div.rep').attr('data-id');
+  $('#representatives div.rep[data-id!="' + id + '"]').slideUp(200);
+  $("#phonescript").show();
 }
 
 function hideScript() {
-  $("#phonescript").slideUp();
-  $(".showScript").show();
-  $(".hideScript").hide();
+  $("#phonescript").hide();
+  $('#representatives div.rep').slideDown(200);
 }
 
 $("#representatives").on("click", "button.call", function(event) {

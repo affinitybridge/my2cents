@@ -165,6 +165,7 @@ function processReps(reps) {
     }
     output.push(
       {
+        id: i,
         name: rep.name,
         title: rep.district_name + ' ' + rep.elected_office + ' at ' + rep.representative_set_name,
         phone: phone,

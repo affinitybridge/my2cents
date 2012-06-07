@@ -1,16 +1,16 @@
 each rep in reps
-  .rep
+  .rep(data-id="#{rep.id}")
     if rep.photo
       img.photo(src='#{rep.photo}')
     .info
       h3 #{rep.name}
       ul
-        li #{rep.title}
-        if rep.phone
-          li #{rep.phone}
-            = " "
-            button.call(data-phone="#{rep.phone}") Call
-            button.hangup Hangup
+        li.title #{rep.title}
         if rep.email
-          li
+          li.email
             a(href="mailto:#{rep.email}", target="_blank") Email
+        if rep.phone
+          li.phone #{rep.phone}
+            = " "
+            button.call(data-phone="#{rep.phone}") Call Now
+            button.hangup Hangup

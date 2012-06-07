@@ -1,10 +1,7 @@
-h1 #{campaign.title}
+h2 #{campaign.title}
 #representatives
-#footer
-  h3 Phone Script
-  button.showScript Show
-  button.hideScript Hide
-  #phonescript
-    p #{campaign.script}
+#phonescript
+  p #{campaign.script}
+if process.env.NODE_ENV !== 'production'
   #log
     h3 Event Log

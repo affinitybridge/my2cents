@@ -1,6 +1,6 @@
 var campaigns = {
-  '1': {id:'1', title:'Our awesome Campaign', script:'We are so awesome! Go and make this a law!'},
-  '2': {id:'2', title:'Our other awesome Campaign', script:'We are still so awesome! Go already and make this a law! GO! GO! GO!'}
+  '1': {id:'1', title:'A worthy campaign.', script:'I am calling in support of a very worthy campaign. I urge you to also put your support behind this endevour.'},
+  '2': {id:'2', title:'Another worthy campaign.', script:'I cam calling in support of another worthy campaign. I urge you to also put your support behind this endevour.'}
 }
 
 module.exports.findAll = function (callback) {
@@ -15,4 +15,3 @@ module.exports.find = function (id, callback) {
     callback(null);
   }
 }
-
