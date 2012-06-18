@@ -10,6 +10,7 @@ Create a .env file with the following content
     TWILIO_CALLER_ID=+15555555555
     DEMO_NUMBER=+16666666666
     DEMO_UNARMED_YES_NO={YES,NO}
+    SALT={random string. see https://gist.github.com/2951303 to generate}
 
 and run it with <code>foreman start</code>. If you do not have foreman yet,
 install it with <code>gem install foreman</code> and

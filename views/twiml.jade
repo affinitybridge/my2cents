@@ -1,6 +1,8 @@
 !!! xml
 Response
-  if armed
+  if altered
+    Say Sorry, we could not complete the call.
+  elseif armed
     Dial(callerId="#{callerID}")
       Number #{number}
   else

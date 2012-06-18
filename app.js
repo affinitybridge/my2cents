@@ -12,7 +12,8 @@ var express = require('express'),
     Capability = require('twilio').Capability,
     represent = require('represent'),
     campaigns = require('./campaigns'),
-    stylus = require('stylus');
+    stylus = require('stylus'),
+    crypto = require('crypto');
 
 // Create the Express server.
 var app = express.createServer();
@@ -128,10 +129,13 @@ app.get('/representatives/:lat/:lon', function (req, res) {
 
 // Twilio App Voice request URL.
 // When a call is placed Twilio will GET this resource with the number to call.
-//
-// @TODO: Ensure only the number of the placed call is called.
 app.get('/twiml', function (req, res) {
   var number = req.param('PhoneNumber');
+  var hash = req.param('PhoneId');
+  var altered = false;
+  if (miniHash(number, process.env.SALT) !== hash) {
+    altered = true;
+  }
   // Use a demo number if variable present.
   if (process.env.DEMO_NUMBER) {
     number = process.env.DEMO_NUMBER;
@@ -142,6 +146,7 @@ app.get('/twiml', function (req, res) {
   res.render('twiml', {
     layout: false,
     number: number,
+    altered: altered,
     callerID: process.env.TWILIO_CALLER_ID,
     armed: 'YES' !== process.env.DEMO_UNARMED_YES_NO,
   });
@@ -169,12 +174,23 @@ function processReps(reps) {
         name: rep.name,
         title: rep.district_name + ' ' + rep.elected_office + ' at ' + rep.representative_set_name,
         phone: phone,
+        phoneHash: miniHash(phone, process.env.SALT),
         email: rep.email,
         photo: rep.photo_url
       }
     );
   }
   return output;
+}
+
+// Used to generate a hash of plain-text + salt
+function miniHash(msg, key) {
+  return crypto
+    .createHmac('sha256', key)
+    .update(msg)
+    .digest('hex')
+    // shorten hash
+    .substring(3,11);
 }
 
 // Bind the Express server to a port.

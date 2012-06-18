@@ -59,7 +59,7 @@ function callLog(text) {
   $("#log").append('<p>' + text + '</p>');
 }
 
-function call(number, clickedButton) {
+function call(number, id, clickedButton) {
   $(clickedButton).parent().find('.hangup').show();
   $('.call').hide();
   showScript(clickedButton);
@@ -67,7 +67,11 @@ function call(number, clickedButton) {
     callLog("DEMO MODE: Instead of calling " + number + ", this demo number gets called: " + TwilioConfig.DemoNumber);
     number = TwilioConfig.DemoNumber;
   }
-  params = {"PhoneNumber":number, "CampaignId":TwilioConfig.CampaignId};
+  params = {
+    "PhoneNumber":number,
+    "PhoneId":id,
+    "CampaignId":TwilioConfig.CampaignId
+  };
   Twilio.Device.connect(params);
 }
 
@@ -87,7 +91,7 @@ function hideScript() {
 }
 
 $("#representatives").on("click", "button.call", function(event) {
-	call($(this).attr('data-phone'), this);
+	call($(this).attr('data-phone'), $(this).attr('data-id'), this);
 });
 
 $("#representatives").on("click", "button.hangup", function(event) {
