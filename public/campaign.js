@@ -59,7 +59,7 @@ function callLog(text) {
   $("#log").append('<p>' + text + '</p>');
 }
 
-function call(number, id, clickedButton) {
+function call(number, hash, clickedButton) {
   $(clickedButton).parent().find('.hangup').show();
   $('.call').hide();
   showScript(clickedButton);
@@ -69,7 +69,7 @@ function call(number, id, clickedButton) {
   }
   params = {
     "PhoneNumber":number,
-    "PhoneId":id,
+    "PhoneId":hash,
     "CampaignId":TwilioConfig.CampaignId
   };
   Twilio.Device.connect(params);
@@ -91,7 +91,7 @@ function hideScript() {
 }
 
 $("#representatives").on("click", "button.call", function(event) {
-	call($(this).attr('data-phone'), $(this).attr('data-id'), this);
+	call($(this).attr('data-phone'), $(this).attr('data-hash'), this);
 });
 
 $("#representatives").on("click", "button.hangup", function(event) {
