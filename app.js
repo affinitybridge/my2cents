@@ -130,12 +130,13 @@ app.get('/representatives/:lat/:lon', function (req, res) {
 // Twilio App Voice request URL.
 // When a call is placed Twilio will GET this resource with the number to call.
 app.get('/twiml', function (req, res) {
-  if (!req.param('PhoneNumber') || !req.param('PhoneId')) {
+  if (!req.param('PhoneNumber') || !req.param('PhoneHash')) {
     res.send(500);
   }
   var number = req.param('PhoneNumber');
-  var hash = req.param('PhoneId');
+  var hash = req.param('PhoneHash');
   var altered = false;
+  // Has the dialed number been altered? ie: Is someone trying for free calls?
   if (miniHash(number, process.env.SALT) !== hash) {
     altered = true;
   }

@@ -69,7 +69,7 @@ function call(number, hash, clickedButton) {
   }
   params = {
     "PhoneNumber":number,
-    "PhoneId":hash,
+    "PhoneHash":hash,
     "CampaignId":TwilioConfig.CampaignId
   };
   Twilio.Device.connect(params);
