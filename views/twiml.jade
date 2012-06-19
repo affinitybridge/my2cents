@@ -1,11 +1,11 @@
 !!! xml
 Response
-  if altered
+  - if (altered)
     Say Sorry, we could not complete the call.
-  elseif armed
+  - else if (armed)
     Dial(callerId="#{callerID}")
       Number #{number}
-  else
+  - else
     Say This phone application is currently unavailable.
       | The request to call #{number} can not be fulfilled.
       | For help on this matter, please refer to the contact

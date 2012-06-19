@@ -130,6 +130,9 @@ app.get('/representatives/:lat/:lon', function (req, res) {
 // Twilio App Voice request URL.
 // When a call is placed Twilio will GET this resource with the number to call.
 app.get('/twiml', function (req, res) {
+  if (!req.param('PhoneNumber') || !req.param('PhoneId')) {
+    res.send(500);
+  }
   var number = req.param('PhoneNumber');
   var hash = req.param('PhoneId');
   var altered = false;
@@ -148,7 +151,7 @@ app.get('/twiml', function (req, res) {
     number: number,
     altered: altered,
     callerID: process.env.TWILIO_CALLER_ID,
-    armed: 'YES' !== process.env.DEMO_UNARMED_YES_NO,
+    armed: 'YES' !== process.env.DEMO_UNARMED_YES_NO
   });
 });
 
