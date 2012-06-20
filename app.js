@@ -11,7 +11,7 @@
 var express = require('express'),
     Capability = require('twilio').Capability,
     represent = require('represent'),
-    campaigns = require('./campaigns'),
+    Campaign = require('./models/campaign'),
     stylus = require('stylus'),
     crypto = require('crypto');
 
@@ -63,7 +63,10 @@ app.configure('production', function(){
 
 // List all campaigns on the homepage.
 app.get('/', function (req, res) {
-  campaigns.findAll(function(campaigns) {
+  Campaign.find({}, function(err, campaigns) {
+    if (err) {
+      throw err;
+    }
     res.render('root', {
       pageTitle: 'Project Codename',
       campaigns: campaigns
@@ -71,11 +74,30 @@ app.get('/', function (req, res) {
   });
 });
 
+// Present a form to create a campaign widget.
+app.get('/campaign/new', function (req, res) {
+  res.render('campaigns/new', {
+    pageTitle: 'Create a new Campaign',
+    campaign: new Campaign()
+  });
+});
+
+// Create a campaign widget.
+app.post('/campaign', function (req, res) {
+  var campaign = new Campaign(req.body.campaign);
+  campaign.save(function () {
+    res.redirect('/campaign/' + campaign._id.toHexString());
+  });
+});
+
 // A campaign widget.
 app.get('/campaign/:id', function (req, res) {
-  // Load the campaign. See `find()` in `campaigns.js`.
-  campaigns.find(req.params.id, function(campaign) {
-    if (campaign) {
+  // Load the campaign.
+  Campaign.findById(req.params.id, function(err, campaign) {
+    if (err) {
+      throw err;
+    }
+    else if (campaign) {
       // Generate a new [Twilio Capability token](http://www.twilio.com/docs/client/capability-tokens).
       var cap = new Capability(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
       cap.allowClientOutgoing(process.env.TWILIO_APP_SID);
@@ -102,11 +124,14 @@ app.get('/campaign/:id', function (req, res) {
 
 // Display a campaign widget in an iframe.
 app.get('/campaign/:id/iframe', function (req, res) {
-  // Load the campaign. See `find()` in `campaigns.js`.
-  campaigns.find(req.params.id, function(campaign) {
-    if (campaign) {
+  // Load the campaign.
+  Campaign.findById(req.params.id, function(err, campaign) {
+    if (err) {
+      throw err;
+    }
+    else if (campaign) {
       res.render('campaign_iframe', {
-        campaignId: campaign.id,
+        campaignId: campaign._id,
         pageTitle: campaign.title
       });
     }

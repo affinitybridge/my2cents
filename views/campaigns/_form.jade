@@ -1,0 +1,10 @@
+p
+  label(for='campaign_title') Title:
+p
+  input(type='text', id='campaign_title', name='campaign[title]', value=campaign.title)
+p
+  label(for='campaign_script') Script:
+p
+  textarea(id='campaign_script', name='campaign[script]')= campaign.script
+p
+  input(type='submit')
