@@ -2,11 +2,6 @@ var assert  = require('assert'),
     request = require('request'),
     app = require('../app');
 
-
-// app should be our app, but it's not, for unknown reasons.
-// port is hardcoded as 5001 below.
-//console.log(app.settings.port);
-
 describe("Homepage", function() {
   describe("GET /", function() {
     var body;
@@ -14,7 +9,7 @@ describe("Homepage", function() {
     before(function(done) {
       var options;
       options = {
-        uri: "http://localhost:" + '5001' + "/"
+        uri: "http://localhost:" + app.settings.port + "/"
       };
       request(options, function(err, response, _body) {
         body = _body;
@@ -34,7 +29,7 @@ describe("Campaign", function() {
     before(function(done) {
       var options;
       options = {
-        uri: "http://localhost:" + '5001' + "/campaign/1/iframe"
+        uri: "http://localhost:" + app.settings.port + "/campaign/1/iframe"
       };
       request(options, function(err, response, _body) {
         body = _body;

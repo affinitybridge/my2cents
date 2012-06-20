@@ -16,7 +16,7 @@ var express = require('express'),
     crypto = require('crypto');
 
 // Create the Express server.
-var app = express.createServer();
+var app = module.exports = express.createServer();
 
 // Stylus compile function. [[docs](http://learnboost.github.com/stylus/docs/middleware.html)]
 function compile(str, path) {
