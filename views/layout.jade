@@ -8,6 +8,11 @@ html
     link(rel='stylesheet', href='/site.css')
     title= pageTitle
   body
+    - var flashTypes = ['info', 'error']
+    each flashType in flashTypes
+      if flash[flashType]
+        p.flash(class=flashType)
+          = flash[flashType]
     .container!= body
     script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')
     block moreScripts

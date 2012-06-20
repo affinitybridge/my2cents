@@ -11,6 +11,7 @@ Create a .env file with the following content
     DEMO_NUMBER=+16666666666
     DEMO_MODE={YES,NO}
     SALT={random string. see https://gist.github.com/2951303 to generate}
+    SESSION_SECRET={random string. see https://gist.github.com/2951303 to generate}
 
 and run it with <code>foreman start</code>. If you do not have foreman yet,
 install it with <code>gem install foreman</code> and

@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
-
-var db = mongoose.connect('mongodb://localhost/projectcodename');
+    Schema = mongoose.Schema,
+    db = require('../db');
 
 var Campaign = new Schema();
 

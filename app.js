@@ -12,8 +12,38 @@ var express = require('express'),
     Capability = require('twilio').Capability,
     represent = require('represent'),
     Campaign = require('./models/campaign'),
+    User = require('./models/user'),
     stylus = require('stylus'),
-    crypto = require('crypto');
+    crypto = require('crypto'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy;
+
+// ### Setup Passport authentication library
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Unknown username or password' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Unknown username or password' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findOne(id, function (err, user) {
+    done(err, user);
+  });
+});
 
 // Create the Express server.
 var app = module.exports = express.createServer();
@@ -44,6 +74,9 @@ app.configure(function() {
   app.use(express.bodyParser());
   app.use(express.static(__dirname + '/public'));
   app.use(express.cookieParser());
+  app.use(express.session({secret: process.env.SESSION_SECRET}));
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(express.favicon());
 });
 
@@ -59,11 +92,29 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
+// Dynamic view helpers
+app.dynamicHelpers({
+  flash: function (req, res) {
+    return req.flash();
+  }
+});
+
+// User authentication middleware
+function requireAuth(req, res, next) {
+  if (req.session.user) {
+    next();
+  }
+  else {
+    req.flash('error', 'Please login to access this page!');
+    res.redirect('/login');
+  }
+}
+
 // ### Routes
 
 // List all campaigns on the homepage.
 app.get('/', function (req, res) {
-  Campaign.find({}, function(err, campaigns) {
+  Campaign.find({}, function (err, campaigns) {
     if (err) {
       throw err;
     }
@@ -74,8 +125,83 @@ app.get('/', function (req, res) {
   });
 });
 
+// Present a login form.
+app.get('/login', function (req, res) {
+  res.render('login', {
+    pageTitle: 'Login'
+  });
+});
+
+// Process the login form.
+app.post(
+  '/login',
+  passport.authenticate('local', {
+    failureRedirect: '/login',
+    failureFlash: true
+  }),
+  function (req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` property contains the authenticated user.
+    req.session.user = req.user;
+    res.redirect('/dashboard');
+  }
+);
+
+// Present a form to create a user.
+app.get('/user/new', function (req, res) {
+  res.render('users/new', {
+    pageTitle: 'Create a new User',
+    user: new User()
+  });
+});
+
+// Create a user.
+app.post('/user', function (req, res) {
+  var user = new User(req.body.user);
+  User.findOne({username: user.username}, function (err, founduser) {
+    if (err) {
+      throw err;
+    }
+    else if (founduser) {
+      // we have a pre-existing user
+      req.flash('error', 'This username exists already. Please choose another username!');
+      res.redirect('/user/new');
+    }
+    else {
+      // we have NO pre-existing user
+      user.save(function (err) {
+        if (err) {
+          throw err;
+        }
+        res.redirect('/login'); // TODO authenticate and redirect to dashboard instead!
+      });
+    }
+  });
+});
+
+// Present a form to create a user.
+app.get('/dashboard', requireAuth, function (req, res) {
+  User.findOne({username: req.session.user.username}, function (err, user) {
+    if (err) {
+      throw err;
+    }
+    else if (user) {
+      res.render('users/dashboard', {
+        pageTitle: 'Your dashboard',
+        user: user
+      });
+    }
+    else {
+      // If no user found display a 404.
+      res.send('404', 404);
+    }
+  });
+
+
+});
+
 // Present a form to create a campaign widget.
-app.get('/campaign/new', function (req, res) {
+app.get('/campaign/new', requireAuth, function (req, res) {
   res.render('campaigns/new', {
     pageTitle: 'Create a new Campaign',
     campaign: new Campaign()
@@ -83,7 +209,7 @@ app.get('/campaign/new', function (req, res) {
 });
 
 // Create a campaign widget.
-app.post('/campaign', function (req, res) {
+app.post('/campaign', requireAuth, function (req, res) {
   var campaign = new Campaign(req.body.campaign);
   campaign.save(function () {
     res.redirect('/campaign/' + campaign._id.toHexString());
@@ -93,7 +219,7 @@ app.post('/campaign', function (req, res) {
 // A campaign widget.
 app.get('/campaign/:id', function (req, res) {
   // Load the campaign.
-  Campaign.findById(req.params.id, function(err, campaign) {
+  Campaign.findById(req.params.id, function (err, campaign) {
     if (err) {
       throw err;
     }
@@ -125,7 +251,7 @@ app.get('/campaign/:id', function (req, res) {
 // Display a campaign widget in an iframe.
 app.get('/campaign/:id/iframe', function (req, res) {
   // Load the campaign.
-  Campaign.findById(req.params.id, function(err, campaign) {
+  Campaign.findById(req.params.id, function (err, campaign) {
     if (err) {
       throw err;
     }
