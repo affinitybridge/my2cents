@@ -165,7 +165,7 @@ app.get('/twiml', function (req, res) {
     number: number,
     altered: altered,
     callerID: process.env.TWILIO_CALLER_ID,
-    armed: 'YES' !== process.env.DEMO_UNARMED_YES_NO
+    armed: 'YES' !== process.env.DEMO_MODE
   });
 });
 
