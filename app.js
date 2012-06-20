@@ -39,11 +39,24 @@ app.configure(function() {
   }));
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.set('port', process.env.PORT || 5000);
   app.use(express.logger());
   app.use(express.bodyParser());
   app.use(express.static(__dirname + '/public'));
   app.use(express.cookieParser());
   app.use(express.favicon());
+});
+
+app.configure('development', function(){
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+});
+
+app.configure('test', function(){
+  app.set('port', 5001);
+});
+
+app.configure('production', function(){
+  app.use(express.errorHandler());
 });
 
 // ### Routes
@@ -198,7 +211,7 @@ function miniHash(msg, key) {
 }
 
 // Bind the Express server to a port.
-var port = process.env.PORT || 5000;
+var port = app.settings.port;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
