@@ -16,7 +16,8 @@ var express = require('express'),
     stylus = require('stylus'),
     crypto = require('crypto'),
     passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy;
+    LocalStrategy = require('passport-local').Strategy,
+    config = require('./config');
 
 // ### Setup Passport authentication library
 
@@ -74,7 +75,7 @@ app.configure(function() {
   app.use(express.bodyParser());
   app.use(express.static(__dirname + '/public'));
   app.use(express.cookieParser());
-  app.use(express.session({secret: process.env.SESSION_SECRET}));
+  app.use(express.session({secret: process.env.SESSION_SECRET || config.session_secret}));
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(express.favicon());
