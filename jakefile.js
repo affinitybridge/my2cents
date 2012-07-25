@@ -32,7 +32,8 @@
       undef: true,
       strict: false,
       trailing: true,
-      node: true
+      node: true,
+      es5: true
     };
   }
 }());

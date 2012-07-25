@@ -56,8 +56,8 @@ function compile(str, path) {
     // Comment generated CSS when not on production
     .set('linenos', process.env.NODE_ENV !== 'production')
     // Compress generated CSS on production
-    .set('compress', process.env.NODE_ENV == 'production')
-};
+    .set('compress', process.env.NODE_ENV === 'production');
+}
 
 // Configure Express application.
 // Express uses [Connect](http://www.senchalabs.org/connect/) middleware.
@@ -264,7 +264,7 @@ app.get('/campaign/:id/iframe', function (req, res) {
     }
     else {
       // If no campaign found display a 404.
-      res.send('404', 404)
+      res.send('404', 404);
     }
   });
 });
@@ -327,19 +327,19 @@ app.get('/twiml', function (req, res) {
 // @TODO: This might need to become async
 function processReps(reps) {
   var output = [];
-  for (i in reps.objects) {
-    var rep = reps.objects[i];
+  for (var index = 0; index < reps.objects.length; index++) {
+    var rep = reps.objects[index];
     var phone = '';
     // Only use the Constituency phone number.
-    for (o in rep.offices) {
-      if (rep.offices[o].tel && rep.offices[o].type.match(/Constituency/i)) {
-        var phone = rep.offices[o].tel;
+    for (var office_index = 0; office_index < rep.offices.length; office_index++) {
+      if (rep.offices[office_index].tel && rep.offices[office_index].type.match(/Constituency/i)) {
+        phone = rep.offices[office_index].tel;
         break;
       }
     }
     output.push(
       {
-        id: i,
+        id: index,
         name: rep.name,
         title: rep.district_name + ' ' + rep.elected_office + ' at ' + rep.representative_set_name,
         phone: phone,
