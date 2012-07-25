@@ -2,11 +2,10 @@
 (function() {
   "use strict";
 
-  desc("Build and test");
-  task("default", ["lint", "docs"], function() {
-  });
+  desc("Build");
+  task("default", ["lint", "docs", "test"], function() {});
 
-  desc("Lint everything");
+  desc("Lint");
   task("lint", [], function() {
     var lint = require("./build/lint/lint_runner.js");
     var files = new jake.FileList();
@@ -18,7 +17,7 @@
     if (!passed) fail("Lint failed.");
   });
 
-  desc("Create docs");
+  desc("Documentation");
   task("docs", [], function() {
     var files = ['app.js'];
     var spawn = require('child_process').spawn,
@@ -30,6 +29,11 @@
     doc.stderr.on('data', function (data) {
       process.stderr.write(data);
     });
+  });
+
+  desc("Test");
+  task("test", [], function() {
+    console.log("TODO: testing goes here.");
   });
 
   function nodeLintOptions() {
