@@ -11,6 +11,7 @@
     var lint = require("./build/lint/lint_runner.js");
     var files = new jake.FileList();
     files.include("*.js");
+    files.include("*/*.js");
     files.exclude("node_modules");
     var options = nodeLintOptions();
     var passed = lint.validateFileList(files.toArray(), options, {});
@@ -33,7 +34,19 @@
       strict: false,
       trailing: true,
       node: true,
-      es5: true
+      es5: true,
+      jquery: true,
+      browser: true,
+      predef: [
+        "Twilio",       // Used by Twilio
+        "TwilioConfig", // Used by Twilio
+        "describe",     // Used by mocha
+        "it",           // Used by mocha
+        "before",       // Used by mocha
+        "beforeEach",   // Used by mocha
+        "after",        // Used by mocha
+        "afterEach"     // Used by mocha
+      ]
     };
   }
 }());
