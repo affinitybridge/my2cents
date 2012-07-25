@@ -3,7 +3,7 @@
   "use strict";
 
   desc("Build and test");
-  task("default", ["lint"], function() {
+  task("default", ["lint", "docs"], function() {
   });
 
   desc("Lint everything");
@@ -17,6 +17,21 @@
     var passed = lint.validateFileList(files.toArray(), options, {});
     if (!passed) fail("Lint failed.");
   });
+
+  desc("Create docs");
+  task("docs", [], function() {
+    var files = ['app.js'];
+    var spawn = require('child_process').spawn,
+        doc = spawn('docco', files);
+
+    doc.stdout.on('data', function (data) {
+      process.stdout.write(data);
+    });
+    doc.stderr.on('data', function (data) {
+      process.stderr.write(data);
+    });
+  });
+
   function nodeLintOptions() {
     return {
       bitwise: true,
