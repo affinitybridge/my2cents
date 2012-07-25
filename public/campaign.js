@@ -67,7 +67,7 @@ function call(number, hash, clickedButton) {
     callLog("DEMO MODE: Instead of calling " + number + ", this demo number gets called: " + TwilioConfig.DemoNumber);
     number = TwilioConfig.DemoNumber;
   }
-  params = {
+  var params = {
     "PhoneNumber":number,
     "PhoneHash":hash,
     "CampaignId":TwilioConfig.CampaignId
@@ -91,17 +91,17 @@ function hideScript() {
 }
 
 $("#representatives").on("click", "button.call", function(event) {
-	call($(this).attr('data-phone'), $(this).attr('data-hash'), this);
+  call($(this).attr('data-phone'), $(this).attr('data-hash'), this);
 });
 
 $("#representatives").on("click", "button.hangup", function(event) {
-	hangup(this);
+  hangup(this);
 });
 
 $(".showScript").on("click", function(event) {
-	showScript();
+  showScript();
 }).button();
 
 $(".hideScript").on("click", function(event) {
-	hideScript();
+  hideScript();
 }).button();

@@ -10,8 +10,8 @@ User.add({
 });
 
 User.methods.validPassword = function (password) {
-  return this.password == password;
-}
+  return this.password === password;
+};
 
 db.model('User', User);
 
