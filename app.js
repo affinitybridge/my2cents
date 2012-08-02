@@ -53,9 +53,9 @@
   function compile(str, path) {
     return stylus(str)
       .set('filename', path)
-      // Comment generated CSS when not on production
+      // Comment the processed CSS when not on production
       .set('linenos', process.env.NODE_ENV !== 'production')
-      // Compress generated CSS on production
+      // Compress the processed CSS on production
       .set('compress', process.env.NODE_ENV === 'production');
   }
 
