@@ -33,7 +33,7 @@
 
   desc("Test");
   task("test", [], function() {
-    console.log("TODO: testing goes here.");
+    console.log("NOTE: run 'make test' to run tests.");
   });
 
   function nodeLintOptions() {
