@@ -53,7 +53,7 @@ Install `docco` with the following command:
     easy_install Pygments
     npm install -g docco
 
-To run all build commands simple run `$ jake` from the project root.
+To run all build commands run `$ jake` from the project root.
 
 To lint the code run `$ jake lint`
 
