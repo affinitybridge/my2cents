@@ -7,14 +7,14 @@ touch of a button.
 
 Developed to run on [Heroku](http://heroku.com).
 
-## Create a [Heroku](http://heroku.com) account
+## Create a Heroku account
 
-Create an account on Heroku. Familiarise yourself with their [documentation on
-using Node.js](https://devcenter.heroku.com/articles/nodejs)
+Create an account on [Heroku](http://heroku.com). Familiarise yourself with their [documentation on
+using Node.js](https://devcenter.heroku.com/articles/nodejs).
 
-## Create a [Twilio](http://twilio.com) app
+## Create a Twilio app
 
-Create a new app and note your account SID and token, the app SID, and your
+Create a new [Twilio](http://twilio.com) app and note your account SID and token, the app SID, and your
 phone number.
 
 ## Development Heroku environment variables
