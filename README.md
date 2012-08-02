@@ -1,6 +1,13 @@
 # Project Codename
 
-Create a .env file with the following content
+Project Codename connects individuals with their elected representatives.
+
+Create web widgets with localized lists of representatives. Call them at the
+touch of a button.
+
+## Heroku environment variables
+
+Create a `.env` file in the root of the project with the following content:
 
     NODE_ENV=development
     APP_URL=http://localhost:5000
@@ -13,32 +20,55 @@ Create a .env file with the following content
     SALT={random string. see https://gist.github.com/2951303 to generate}
     SESSION_SECRET={random string. see https://gist.github.com/2951303 to generate}
 
-and run it with <code>foreman start</code>. If you do not have foreman yet,
-install it with <code>gem install foreman</code> and
-[read about it](https://github.com/ddollar/foreman).
+`DEMO_MODE` and `DEMO_NUMBER` are optional.
 
-The two environment variables <code>DEMO_NUMBER</code> and
-<code>DEMO_MODE</code> are optional.
+When `DEMO_MODE` is set to `YES`, no phone call will be made and the web site
+user will hear a "currently unavailable" message.
 
-When <code>DEMO_NUMBER</code> is present, this number will be dialled instead
-of the requested number.
+When `DEMO_NUMBER` is present, this number will be dialled instead of the
+requested number.
 
-When <code>DEMO_MODE</code> is set to <code>YES</code>, no phone call
-will be made and the web site user will hear a "currently unavailable" message.
+## Running the application
 
-# Generate docs
+Use `foreman` to run the app. You can install [foreman](https://github.com/ddollar/foreman) with the following command.
 
-Install [docco](http://jashkenas.github.com/docco/) and it's dependencies like
-so:
+    gem install foreman
+
+Run the app with the following command:
+
+    foreman start
+
+## Build tools
+
+[Jake](https://github.com/mde/jake/#jake----javascript-build-tool-for-nodejs) is used to help with the build.
+
+Install `jake` with the following command:
+
+    npm install -g jake
+
+[Docco](http://jashkenas.github.com/docco/) is used for building documentation.
+
+Install `docco` with the following command:
 
     easy_install Pygments
     npm install -g docco
 
-Update docs:
+To run all build commands simple run `$ jake` from the project root.
 
-    docco app.js
+To lint the code run `$ jake lint`
 
-# TODO
+To only build the docs run `$ jake docs`
+
+## Tests
+
+[Mocha](http://visionmedia.github.com/mocha/) is used for testing.
+
+To run the tests run either of the following commands:
+
+    make test
+    npm test
+
+## TODO
 
 - add DB backend
 - make the TWILIO_* environment variables part of the campaign model

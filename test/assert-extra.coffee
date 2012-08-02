@@ -1,3 +1,7 @@
+# This file is from a http://peepcode.com project
+# https://peepcode.com/products/full-stack-nodejs-i
+# Support Peepcode today!
+
 # Some original code is from https://github.com/cloudhead/vows/blob/master/lib/assert/macros.js
 assert = require 'assert'
 libxmljs = require 'libxmljs'

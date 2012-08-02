@@ -5,8 +5,7 @@
   // Project Codename is built on [Express](http://expressjs.com/). It uses the
   // [Twilio API](http://twilio.com) to make phone calls and the
   // [Open North Represent API](http://represent.opennorth.ca/) to receive
-  // representative information. Campaigns are currently persisted in the
-  // `capaigns.js` file. [Jade](http://jade-lang.com/) is used for templating and
+  // representative information. [Jade](http://jade-lang.com/) is used for templating and
   // [Stylus](http://learnboost.github.com/stylus/) helps with CSS.
 (function() {
   var express = require('express'),
