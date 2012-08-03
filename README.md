@@ -116,10 +116,9 @@ My2Cents is MIT licensed. See the [LICENSE](http://github.com/affinitybridge/my2
 
 ## TODO
 
+- Improve UX/UI
 - make the TWILIO_* environment variables part of the campaign model
 - add campaign creation/update/delete forms
-- statistics
-- investigate client-side calls to the represent API
-- UI design
-- debate the use of knockoutjs or something similar for client-side behaviour
-- investigate use of tel:// protocol for mobile devices
+- Statistics
+- Should we use a client side JS library/call Represent API from client?
+- Use `tel://` protocol for mobile devices
