@@ -12,6 +12,12 @@
     "email": "info@affinitybridge.com",
     "url": "http://affinitybridge.com"
   },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/affinitybridge/projectcodename/raw/master/LICENSE"
+    }
+  ],
   "private": true,
   "dependencies": {
     "express": "~2.5.9",
