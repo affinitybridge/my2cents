@@ -9,8 +9,8 @@ Developed to run on [Heroku](http://heroku.com).
 
 ## Create a Heroku account
 
-Create an account on [Heroku](http://heroku.com). Familiarise yourself with their [documentation on
-using Node.js](https://devcenter.heroku.com/articles/nodejs).
+Create an account on [Heroku](http://heroku.com). It would be helpful to be
+familiar with the [documentation on using Node.js](https://devcenter.heroku.com/articles/nodejs).
 
 ## Create a Twilio app
 
@@ -107,10 +107,8 @@ To run the tests run either of the following commands:
 
 ## TODO
 
-- add DB backend
 - make the TWILIO_* environment variables part of the campaign model
 - add campaign creation/update/delete forms
-- user authentication/sign-up/login
 - statistics
 - investigate client-side calls to the represent API
 - UI design
