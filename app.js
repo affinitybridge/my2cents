@@ -323,8 +323,6 @@
 
   // Process a raw result from the Open North Represent API and return a
   // formatted array of representative objects.
-  //
-  // @TODO: This might need to become async
   function processReps(reps) {
     var output = [];
     for (var index = 0; index < reps.objects.length; index++) {
