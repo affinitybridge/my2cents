@@ -19,32 +19,6 @@
       LocalStrategy = require('passport-local').Strategy,
       config = require('./config');
 
-  // Setup Passport authentication
-  passport.use(new LocalStrategy(
-    function(username, password, done) {
-      User.findOne({ username: username }, function (err, user) {
-        if (err) { return done(err); }
-        if (!user) {
-          return done(null, false, { message: 'Unknown username or password' });
-        }
-        if (!user.validPassword(password)) {
-          return done(null, false, { message: 'Unknown username or password' });
-        }
-        return done(null, user);
-      });
-    }
-  ));
-
-  passport.serializeUser(function(user, done) {
-    done(null, user._id);
-  });
-
-  passport.deserializeUser(function(id, done) {
-    User.findOne(id, function (err, user) {
-      done(err, user);
-    });
-  });
-
   // Create the Express server.
   var app = module.exports = express.createServer();
 
@@ -108,6 +82,32 @@
       res.redirect('/login');
     }
   }
+
+  // Setup Passport authentication
+  passport.use(new LocalStrategy(
+    function(username, password, done) {
+      User.findOne({ username: username }, function (err, user) {
+        if (err) { return done(err); }
+        if (!user) {
+          return done(null, false, { message: 'Unknown username or password' });
+        }
+        if (!user.validPassword(password)) {
+          return done(null, false, { message: 'Unknown username or password' });
+        }
+        return done(null, user);
+      });
+    }
+  ));
+
+  passport.serializeUser(function(user, done) {
+    done(null, user._id);
+  });
+
+  passport.deserializeUser(function(id, done) {
+    User.findOne(id, function (err, user) {
+      done(err, user);
+    });
+  });
 
   // ### Routes
 
