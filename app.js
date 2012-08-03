@@ -1,6 +1,6 @@
   // **My2Cents** is a campaign widget for calling elected
   // representatives. Source is available on
-  // [GitHub](https://github.com/affinitybridge/projectcodename).
+  // [GitHub](https://github.com/affinitybridge/my2cents).
 
   // My2Cents is built on [Express](http://expressjs.com/). It uses the
   // [Twilio API](http://twilio.com) to make phone calls and the
@@ -63,7 +63,6 @@
   app.configure(function() {
     app.use(stylus.middleware({
       src: __dirname + '/styles',
-      // @TODO: figure out why we can't put styles in /public/stylesheets
       dest: __dirname + '/public',
       compile: compile
     }));
