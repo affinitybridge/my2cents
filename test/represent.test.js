@@ -17,7 +17,7 @@ describe("Homepage", function() {
       });
     });
     it("has title", function() {
-      assert.hasTag(body, '//head/title', 'Project Codename');
+      assert.hasTag(body, '//head/title', 'My2Cents');
     });
   });
 });

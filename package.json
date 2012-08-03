@@ -1,10 +1,10 @@
 {
-  "name": "project_codename",
+  "name": "my2cents",
   "description": "Connect Canadian citizens with their elected representatives.",
-  "homepage": "http://github.com/affinitybridge/projectcodename",
+  "homepage": "http://github.com/affinitybridge/my2cents",
   "repository": {
     "type": "git",
-    "url": "git://github.com/affinitybridge/projectcodename.git"
+    "url": "git://github.com/affinitybridge/my2cents.git"
   },
   "version": "0.0.1",
   "author": {
@@ -19,11 +19,11 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "http://github.com/affinitybridge/projectcodename/raw/master/LICENSE"
+      "url": "http://github.com/affinitybridge/my2cents/raw/master/LICENSE"
     }
   ],
   "bugs": {
-    "url": "https://github.com/affinitybridge/projectcodename/issues"
+    "url": "https://github.com/affinitybridge/my2cents/issues"
   },
   "dependencies": {
     "express": "~2.5.9",

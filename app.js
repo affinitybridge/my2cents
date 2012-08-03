@@ -1,8 +1,8 @@
-  // **Project Codename** is a campaign widget for calling elected
+  // **My2Cents** is a campaign widget for calling elected
   // representatives. Source is available on
   // [GitHub](https://github.com/affinitybridge/projectcodename).
 
-  // Project Codename is built on [Express](http://expressjs.com/). It uses the
+  // My2Cents is built on [Express](http://expressjs.com/). It uses the
   // [Twilio API](http://twilio.com) to make phone calls and the
   // [Open North Represent API](http://represent.opennorth.ca/) to receive
   // representative information. [Jade](http://jade-lang.com/) is used for templating and
@@ -119,7 +119,7 @@
         throw err;
       }
       res.render('root', {
-        pageTitle: 'Project Codename',
+        pageTitle: 'My2Cents',
         campaigns: campaigns
       });
     });

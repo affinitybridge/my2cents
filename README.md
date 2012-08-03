@@ -1,6 +1,6 @@
-# Project Codename
+# My2Cents
 
-Project Codename connects individuals with their elected representatives.
+My2Cents connects individuals with their elected representatives.
 
 Create web widgets with localized lists of representatives. Call them at the
 touch of a button.
@@ -107,7 +107,7 @@ To run the tests run either of the following commands:
 
 ## License
 
-Project Codename is MIT licensed. See the [LICENSE](http://github.com/affinitybridge/projectcodename/raw/master/LICENSE) file.
+My2Cents is MIT licensed. See the [LICENSE](http://github.com/affinitybridge/my2cents/raw/master/LICENSE) file.
 
 ## Contributors
 
