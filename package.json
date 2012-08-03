@@ -12,13 +12,19 @@
     "email": "info@affinitybridge.com",
     "url": "http://affinitybridge.com"
   },
+  "contributors": [
+    "Shawn Price <shawnp@gmail.com> (http://github.com/sprice)",
+    "Raphael Huefner"
+  ],
   "licenses": [
     {
       "type": "MIT",
       "url": "http://github.com/affinitybridge/projectcodename/raw/master/LICENSE"
     }
   ],
-  "private": true,
+  "bugs": {
+    "url": "https://github.com/affinitybridge/projectcodename/issues"
+  },
   "dependencies": {
     "express": "~2.5.9",
     "jade": "~0.26.0",
@@ -41,5 +47,6 @@
   },
   "engines": {
     "node": "*"
-  }
+  },
+  "private": true
 }
