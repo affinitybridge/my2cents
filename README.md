@@ -105,6 +105,15 @@ To run the tests run either of the following commands:
     make test
     npm test
 
+## License
+
+Project Codename is MIT licensed. See the [LICENSE](http://github.com/affinitybridge/projectcodename/raw/master/LICENSE) file.
+
+## Contributors
+
+* [Shawn Price](https://twitter.com/sprice)
+* Raphael Huefner
+
 ## TODO
 
 - make the TWILIO_* environment variables part of the campaign model
