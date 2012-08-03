@@ -19,8 +19,7 @@
       LocalStrategy = require('passport-local').Strategy,
       config = require('./config');
 
-  // ### Setup Passport authentication library
-
+  // Setup Passport authentication
   passport.use(new LocalStrategy(
     function(username, password, done) {
       User.findOne({ username: username }, function (err, user) {
@@ -174,7 +173,8 @@
           if (err) {
             throw err;
           }
-          res.redirect('/login'); // TODO authenticate and redirect to dashboard instead!
+          // @TODO authenticate and redirect to dashboard instead!
+          res.redirect('/login');
         });
       }
     });
