@@ -1,6 +1,6 @@
 {
   "name": "project_codename",
-  "description": "Twilio powered campaign widget using represent.opennorth.ca API",
+  "description": "Connect Canadian citizens with their elected representatives.",
   "homepage": "http://github.com/affinitybridge/projectcodename",
   "repository": {
     "type": "git",
