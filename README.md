@@ -7,17 +7,19 @@ touch of a button.
 
 Developed to run on [Heroku](http://heroku.com).
 
-## Create a Heroku account
+## Installation
+
+### Create a Heroku account
 
 Create an account on [Heroku](http://heroku.com). It would be helpful to be
 familiar with the [documentation on using Node.js](https://devcenter.heroku.com/articles/nodejs).
 
-## Create a Twilio app
+### Create a Twilio app
 
 Create a new [Twilio](http://twilio.com) app and note your account SID and token, the app SID, and your
 phone number.
 
-## Development Heroku environment variables
+### Development Heroku environment variables
 
 Create a `.env` file in the root of the project with the following content:
 
@@ -41,7 +43,7 @@ user will hear a "currently unavailable" message.
 When `DEMO_NUMBER` is present, this number will be dialled instead of the
 requested number.
 
-## Production Heroku environment variables
+### Production Heroku environment variables
 
 Set the following config variables on heroku using the command `heroku config add KEY:VALUE`
 
