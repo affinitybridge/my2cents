@@ -22,6 +22,7 @@ phone number.
 Create a `.env` file in the root of the project with the following content:
 
     APP_URL=http://localhost:5000
+    DEBUG={true}
     DEMO_MODE={YES,NO}
     DEMO_NUMBER=+15555555550
     NODE_ENV=development
@@ -32,7 +33,7 @@ Create a `.env` file in the root of the project with the following content:
     TWILIO_SID=ACxxxxxxxxxxxxxxxxxxxx
     TWILIO_TOKEN=xxxxxxxxxxxxxxxxxxxx
 
-`DEMO_MODE` and `DEMO_NUMBER` are optional.
+`DEBUG`, `DEMO_MODE` and `DEMO_NUMBER` are optional.
 
 When `DEMO_MODE` is set to `YES`, no phone call will be made and the web site
 user will hear a "currently unavailable" message.
