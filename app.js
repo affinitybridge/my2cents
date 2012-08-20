@@ -28,12 +28,15 @@
       .set('filename', path)
       // Comment the processed CSS when not on production
       .set('linenos', process.env.NODE_ENV !== 'production')
-      // Compress the processed CSS on production
-      .set('compress', process.env.NODE_ENV === 'production');
+      // Compress the processed CSS
+      .set('compress', true);
   }
 
   // Configure Express application.
   // Express uses [Connect](http://www.senchalabs.org/connect/) middleware.
+
+  var oneMonth = 1000 * 60 * 60 * 24 * 30;
+
   app.configure(function() {
     app.use(stylus.middleware({
       src: __dirname + '/styles',
@@ -45,12 +48,13 @@
     app.set('port', process.env.PORT || 5000);
     app.use(express.logger());
     app.use(express.bodyParser());
-    app.use(express.static(__dirname + '/public'));
+    app.use(express.compress());
+    app.use(express.static(__dirname + '/public', { maxAge: oneMonth }));
     app.use(express.cookieParser());
     app.use(express.session({secret: process.env.SESSION_SECRET || config.session_secret}));
     app.use(passport.initialize());
     app.use(passport.session());
-    app.use(express.favicon());
+    app.use(express.favicon('public/favicon.ico', { maxAge: oneMonth }));
   });
 
   app.configure('development', function(){
