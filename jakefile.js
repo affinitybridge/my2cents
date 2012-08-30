@@ -19,7 +19,16 @@
 
   desc("Documentation");
   task("docs", [], function() {
-    var files = ['app.js'];
+    var files = [
+      'app.js',
+      'routes/campaign.js',
+      'routes/dashboard.js',
+      'routes/index.js',
+      'routes/login.js',
+      'routes/representatives.js',
+      'routes/twiml.js',
+      'routes/user.js'
+    ];
     var spawn = require('child_process').spawn,
         doc = spawn('docco', files);
 
