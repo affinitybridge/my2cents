@@ -33,7 +33,11 @@
 
   desc("Test");
   task("test", [], function() {
-    console.log("NOTE: run 'make test' to run tests.");
+    var ex = jake.createExec(['./node_modules/.bin/mocha --reporter list test/*.js'], {printStdout: true});
+    ex.addListener('error', function (msg, code) {
+      fail('Fatal error: ' + msg, code);
+    });
+    ex.run();
   });
 
   function nodeLintOptions() {
