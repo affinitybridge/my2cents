@@ -1,12 +1,15 @@
-h2 Login
-form(action='/login', method='post')
-  p
-    label(for='user_username') Username:
-  p
-    input(type='text', id='user_username', name='username')
-  p
-    label(for='user_password') Password:
-  p
-    input(type='password', id='user_password', name='password')
-  p
-    input(type='submit')
+extends layout
+
+block content
+  h2 Login
+  form(action='/login', method='post')
+    p
+      label(for='user_username') Username:
+    p
+      input(type='text', id='user_username', name='username')
+    p
+      label(for='user_password') Password:
+    p
+      input(type='password', id='user_password', name='password')
+    p
+      input(type='submit')

@@ -1,5 +1,8 @@
-h1= pageTitle
-ul
-  each campaign in campaigns
-    li
-      a(href="campaign/#{campaign.id}/iframe") #{campaign.title}
+extends layout
+
+block content
+  h1= pageTitle
+  ul
+    each campaign in campaigns
+      li
+        a(href="campaign/#{campaign.id}/iframe") #{campaign.title}

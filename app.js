@@ -39,6 +39,7 @@ app.configure(function() {
   }));
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.set('view options', { layout: false });
   app.set('port', process.env.PORT || 5000);
   app.use(express.logger());
   app.use(express.bodyParser());

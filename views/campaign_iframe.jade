@@ -1,6 +1,9 @@
-h1 The primary campaign page.
+extends layout
 
-p This is the primary campaign page.
+block content
+  h1 The primary campaign page.
 
-.center
-  iframe(src='#{process.env.APP_URL}/campaign/#{campaignId}', width='300', height='700')
+  p This is the primary campaign page.
+
+  .center
+    iframe(src='#{process.env.APP_URL}/campaign/#{campaignId}', width='300', height='700')

@@ -1,7 +1,10 @@
-h2 #{campaign.title}
-#representatives
-#phonescript
-  p #{campaign.script}
-if process.env.DEBUG === 'true'
-  #log
-    h3 Event Log
+extends campaign_layout
+
+block content
+  h2 #{campaign.title}
+  #representatives
+  #phonescript
+    p #{campaign.script}
+  if process.env.DEBUG === 'true'
+    #log
+      h3 Event Log

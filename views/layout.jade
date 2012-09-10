@@ -13,6 +13,10 @@ html
       if flash[flashType]
         p.flash(class=flashType)
           = flash[flashType]
-    .container!= body
+
+    .container
+      block content
+
     script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+
     block moreScripts
