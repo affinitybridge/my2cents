@@ -32,6 +32,7 @@ function compile(str, path) {
 var oneMonth = 1000 * 60 * 60 * 24 * 30;
 
 app.configure(function() {
+  // app.use(stylus.middleware(__dirname + '/public'));
   app.use(stylus.middleware({
     src: __dirname + '/styles',
     dest: __dirname + '/public',
