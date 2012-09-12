@@ -10,8 +10,13 @@ User.add({
   password: String
 });
 
-User.methods.validPassword = function (password) {
-  return bcrypt.compareSync(password, this.password);
+User.methods.validPassword = function (password, callback) {
+  return bcrypt.compare(password, this.password, function(err, match) {
+    if (err) {
+      throw err;
+    }
+    return callback(null, match);
+  });
 };
 
 db.model('User', User);

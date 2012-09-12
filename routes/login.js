@@ -10,10 +10,13 @@ passport.use(new LocalStrategy(
       if (!user) {
         return done(null, false, { message: 'Unknown username or password' });
       }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Unknown username or password' });
-      }
-      return done(null, user);
+      user.validPassword(password, function(err, match) {
+        if (!match) {
+          return done(null, false, { message: 'Unknown username or password' });
+        } else {
+          return done(null, user);
+        }
+      });
     });
   }
 ));
