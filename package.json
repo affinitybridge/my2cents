@@ -33,7 +33,8 @@
     "represent": "~0.1.0",
     "mongoose": "~2.7.0",
     "passport": "~0.1.10",
-    "passport-local": "~0.1.3"
+    "passport-local": "~0.1.3",
+    "bcrypt": "~0.7.2"
   },
   "devDependencies": {
     "mocha": "~1.2.0",

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    db = require('../db');
+    db = require('../db'),
+    bcrypt = require('bcrypt');
 
 var User = new Schema();
 
@@ -10,7 +11,7 @@ User.add({
 });
 
 User.methods.validPassword = function (password) {
-  return this.password === password;
+  return bcrypt.compareSync(password, this.password);
 };
 
 db.model('User', User);
