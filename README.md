@@ -116,6 +116,7 @@ My2Cents is MIT licensed. See the [LICENSE](http://github.com/affinitybridge/my2
 
 * [Shawn Price](https://twitter.com/sprice)
 * Raphael Huefner
+* Smith Milner
 
 ## TODO
 
