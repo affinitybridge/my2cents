@@ -1,2 +1,5 @@
-h2 Create new campaign
-form(action='/campaign', method='post')!= partial('campaigns/form', {locals: {campaign: campaign}})
+extends ../layout
+
+block content
+  h2 Create new campaign
+  form(action='/campaign', method='post')!= partial('campaigns/form', {locals: {campaign: campaign}})

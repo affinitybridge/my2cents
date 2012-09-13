@@ -17,8 +17,19 @@ html
             = flash[flashType]
 
       .container
-        block content
+
+        #menu
+          ul
+            li
+              a(href='/', title="Home", class="home") My2Cents
+            li
+              a(href='/dashboard', title="Dashboard", class="dashboard") Dashboard
+
+        #main
+          .col-inner
+            block content
 
       script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')
       script(src='/bootstrap/js/bootstrap.js')
       block moreScripts
+    #html-overlay
