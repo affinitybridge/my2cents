@@ -10,12 +10,6 @@ html
     title= pageTitle
   body
     #html
-      - var flashTypes = ['info', 'error']
-      each flashType in flashTypes
-        if flash[flashType]
-          p.flash(class=flashType)
-            = flash[flashType]
-
       .container
 
         #menu
@@ -24,9 +18,19 @@ html
               a(href='/', title="Home", class="home") My2Cents
             li
               a(href='/dashboard', title="Dashboard", class="dashboard") Dashboard
+            li
+              a(href='/campaign', title="Dashboard", class="dashboard") Campaigns
+            li
+              a(href='/user', title="Dashboard", class="dashboard") Users
 
         #main
           .col-inner
+            - var flashTypes = ['info', 'error']
+            each flashType in flashTypes
+              if flash[flashType]
+                p.flash(class=flashType)
+                  = flash[flashType]
+
             block content
 
       script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')

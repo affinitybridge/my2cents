@@ -39,7 +39,6 @@ module.exports = function (app, requireAuth) {
           pageTitle: campaign.title,
           twilioConfigJson: JSON.stringify(twilioConfig),
           // Use the `campaign_layout` Jade layout template.
-          layout: 'campaign_layout',
           campaign: campaign
         });
       }

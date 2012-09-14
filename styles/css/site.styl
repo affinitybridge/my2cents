@@ -28,9 +28,40 @@ body
 html
   margin 0
 
+.container
+  width 950px
+
 #main
   background #F8F8F8
-  box-shadow: 0 0 5px #888;
+  box-shadow(0 0 5px #888)
+  margin 0 5px
+
+#menu
+  overflow hidden
+  padding 0 5px
+  ul
+    margin 0
+    padding 0
+    list-style-type none
+  li
+    a
+      color #666
+      float left
+      height 55px
+      line-height 55px
+      padding 0 20px
+      &.active,
+      &:active,
+      &:hover
+        box-shadow(0 0 5px #888)
+        background-color #F8F8F8
+
+#menu a.home
+  background #F8F8F8 url('/images/logo-mini.png') no-repeat 50% 50%
+  box-shadow(0 0 5px #888)
+  background-color #F8F8F8
+  text-indent -9999px
+  width 55px
 
 .col-inner
   padding 20px
