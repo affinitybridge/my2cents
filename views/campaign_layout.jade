@@ -6,17 +6,16 @@ html
     block moreStyles
     link(rel='stylesheet', href='//ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css')
     link(rel='stylesheet', href='//fonts.googleapis.com/css?Open+Sans')
-    link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
     link(rel='stylesheet', href='/css/site.css')
+    link(rel='stylesheet', href='/css/widget.css')
     title= pageTitle
-  body
+  body#widget
     #html
       .container-fluid
         #main
           .col-inner
             block content
       script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')
-      script(src='/bootstrap/js/bootstrap.js')
       script(src='//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js')
       script(src='//static.twilio.com/libs/twiliojs/1.0/twilio.min.js')
       script(type='text/javascript')

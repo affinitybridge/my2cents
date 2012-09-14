@@ -99,6 +99,8 @@ require('./routes/campaign')(app, requireAuth);
 require('./routes/representatives')(app);
 // Twilio app request URL
 require('./routes/twiml')(app);
+// Example Page
+require('./routes/example')(app);
 
 // Bind the Express server to a port.
 var port = app.settings.port;
