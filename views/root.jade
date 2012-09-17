@@ -1,7 +1,9 @@
 extends layout
 
+block title
+  h1.title= pageTitle
+
 block content
-  h1= pageTitle
   ul
     each campaign in campaigns
       li

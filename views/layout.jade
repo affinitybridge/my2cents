@@ -5,35 +5,34 @@ html
     meta(name='robots', content='index')
     block moreStyles
     link(rel='stylesheet', href='//fonts.googleapis.com/css?Open+Sans')
-    link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/site.css')
     title= pageTitle
   body
-    #html
-      .container
+    .container
+      #menu.navbar.navbar-fixed-top.navbar-inverse
+        .navbar-inner
+          .container
+            a.brand(href='/') My2Cents
+            ul.nav
+              li
+                a(href='/dashboard', title="Dashboard", class="dashboard") Dashboard
+              li
+                a(href='/campaign', title="Dashboard", class="dashboard") Campaigns
+              li
+                a(href='/user', title="Dashboard", class="dashboard") Users
 
-        #menu
-          ul
-            li
-              a(href='/', title="Home", class="home") My2Cents
-            li
-              a(href='/dashboard', title="Dashboard", class="dashboard") Dashboard
-            li
-              a(href='/campaign', title="Dashboard", class="dashboard") Campaigns
-            li
-              a(href='/user', title="Dashboard", class="dashboard") Users
+      #main
+        .col-inner
 
-        #main
-          .col-inner
-            - var flashTypes = ['info', 'error']
-            each flashType in flashTypes
-              if flash[flashType]
-                p.flash(class=flashType)
-                  = flash[flashType]
+          .page-header
+              block title
+                h1.title Page Title
 
-            block content
+          include includes/flashes
 
-      script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')
-      script(src='/bootstrap/js/bootstrap.js')
-      block moreScripts
-    #html-overlay
+          block content
+
+    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+    script(src='/bootstrap/js/bootstrap.min.js')
+    block moreScripts

@@ -101,6 +101,8 @@ require('./routes/representatives')(app);
 require('./routes/twiml')(app);
 // Example Page
 require('./routes/example')(app);
+// Error Pages
+require('./routes/error')(app);
 
 // Bind the Express server to a port.
 var port = app.settings.port;

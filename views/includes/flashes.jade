@@ -1,0 +1,6 @@
+- var flashTypes = ['info', 'error']
+each flashType in flashTypes
+  if flash[flashType]
+    .alert(class="alert-" + flashType)
+      button.close(type="button", data-dismiss="alert") ×
+      | #{flash[flashType]}

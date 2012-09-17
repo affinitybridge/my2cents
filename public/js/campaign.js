@@ -11,6 +11,7 @@
       success: function(data) {
         $("#representatives").html(data);
         $("button", "#representatives").button();
+        $('#widget').height($(window).height());
       },
       error: function(jqXHR, textStatus, errorThrown) {
         callLog('Representatives DB Error: ' + textStatus + ' ' + errorThrown);

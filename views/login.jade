@@ -1,7 +1,9 @@
 extends layout
 
+block title
+  h1.title Login
+
 block content
-  h2 Login
   form(action='/login', method='post')
     p
       label(for='user_username') Username:
