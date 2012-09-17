@@ -4,7 +4,12 @@ block title
   h1.title= pageTitle
 
 block content
-  ul
-    each campaign in campaigns
-      li
-        a(href="campaign/#{campaign.id}/iframe") #{campaign.title}
+  - if (campaigns.length)
+    ul
+      each campaign in campaigns
+        li
+          a(href="campaign/#{campaign.id}/iframe") #{campaign.title}
+  - else
+    p No campaigns exist yet. 
+      a(href='campaign/new') Create a campaign
+      .

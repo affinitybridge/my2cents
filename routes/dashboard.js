@@ -2,7 +2,7 @@ var User = require('../models/user');
 
 module.exports = function (app, requireAuth) {
   // Present a form to create a user.
-  app.get('/dashboard', requireAuth, function (req, res) {
+  app.get('/dashboard', requireAuth, function (req, res, next) {
     User.findOne({username: req.session.user.username}, function (err, user) {
       if (err) {
         throw err;
@@ -14,8 +14,9 @@ module.exports = function (app, requireAuth) {
         });
       }
       else {
-        // If no user found display a 404.
-        res.send('404', 404);
+        // If no user found, pass on to the 404 handler which captures
+        // unclaimed paths.
+        next();
       }
     });
   });
