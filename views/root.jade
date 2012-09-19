@@ -4,12 +4,17 @@ block title
   h1.title= pageTitle
 
 block content
-  if campaigns.length
-    ul
-      each campaign in campaigns
-        li
-          a(href="campaign/#{campaign.id}/iframe") #{campaign.title}
-  else
-    p No campaigns exist yet. 
-      a(href='campaign/new') Create a campaign
+  if session.user
+    if campaigns.length
+      ul
+        each campaign in campaigns
+          li
+            a(href="campaign/#{campaign.id}/iframe") #{campaign.title}
+    else
+      a(href='campaign/new') Create your first campaign
       .
+  else
+    h2 Login
+    form(action='/login', method='post')!= partial('users/form', {locals: {user: user}})
+    a(href='/user/new', title="View login page") Create an account
+    .

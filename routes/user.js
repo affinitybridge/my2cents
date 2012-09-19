@@ -12,7 +12,10 @@ module.exports = function (app) {
 
   // Create a user.
   app.post('/user', function (req, res) {
-    var newUser = req.body.user;
+    var newUser = {};
+    newUser.username = req.body.username;
+    newUser.password = req.body.password;
+
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(newUser.password, salt, function (err, hash) {
         if (err) {
@@ -36,7 +39,7 @@ module.exports = function (app) {
                 if (err) {
                   throw err;
                 }
-                req.session.user = req.body.user;
+                req.session.user = newUser;
                 res.redirect('/');
               });
             }

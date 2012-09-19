@@ -1,4 +1,5 @@
-var Campaign = require('../models/campaign');
+var Campaign = require('../models/campaign'),
+    User = require('../models/user');
 
 module.exports = function (app) {
   app.get('/', function (req, res) {
@@ -8,7 +9,8 @@ module.exports = function (app) {
       }
       res.render('root', {
         pageTitle: 'My2Cents',
-        campaigns: campaigns
+        campaigns: campaigns,
+        user: new User()
       });
     });
   });

@@ -32,18 +32,11 @@ passport.deserializeUser(function(id, done) {
 });
 
 module.exports = function (app) {
-  // Present a login form.
-  app.get('/login', function (req, res) {
-    res.render('login', {
-      pageTitle: 'Login'
-    });
-  });
-
   // Process the login form.
   app.post(
     '/login',
     passport.authenticate('local', {
-      failureRedirect: '/login',
+      failureRedirect: '/',
       failureFlash: true
     }),
     function (req, res) {
