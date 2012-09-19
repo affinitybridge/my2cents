@@ -1,8 +1,5 @@
 extends layout
 
-block title
-  h1.title Example Page
-
 block content
   
   iframe(src='#{process.env.APP_URL}/campaign/#{campaign._id}', width='300', height='700', frameborder='0', class='pull-right')

@@ -1,8 +1,5 @@
 extends ../layout
 
-block title
-  h1.title Create account
-
 block content
   form(action='/user', method='post')!= partial('users/form', {locals: {user: user}})
   p Already have an account? 
