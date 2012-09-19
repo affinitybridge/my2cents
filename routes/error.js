@@ -59,4 +59,4 @@ module.exports = function(app) {
     next(new Error('keyboard cat!'));
   });
   
-}
+};
