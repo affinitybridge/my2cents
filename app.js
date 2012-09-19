@@ -69,6 +69,9 @@ app.configure('production', function(){
 app.dynamicHelpers({
   flash: function (req, res) {
     return req.flash();
+  },
+  session: function (req, res) {
+    return req.session;
   }
 });
 
