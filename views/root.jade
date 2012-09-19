@@ -5,11 +5,12 @@ block title
 
 block content
   if session.user
+    h2 Campaigns
     if campaigns.length
       ul
         each campaign in campaigns
           li
-            a(href="campaign/#{campaign.id}/iframe") #{campaign.title}
+            a(href="campaign/#{campaign.id}") #{campaign.title}
     else
       a(href='campaign/new') Create your first campaign
       .

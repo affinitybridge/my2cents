@@ -19,7 +19,7 @@ module.exports = function (app, requireAuth) {
   });
 
   // A campaign widget.
-  app.get('/campaign/:id', function (req, res) {
+  app.get('/campaign/:id/iframe', function (req, res) {
     // Load the campaign.
     Campaign.findById(req.params.id, function (err, campaign) {
       if (err) {
@@ -50,7 +50,7 @@ module.exports = function (app, requireAuth) {
   });
 
   // Display a campaign widget in an iframe.
-  app.get('/campaign/:id/iframe', function (req, res) {
+  app.get('/campaign/:id', function (req, res) {
     // Load the campaign.
     Campaign.findById(req.params.id, function (err, campaign) {
       if (err) {
