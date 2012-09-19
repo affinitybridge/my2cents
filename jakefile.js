@@ -22,7 +22,6 @@
     var files = [
       'app.js',
       'routes/campaign.js',
-      'routes/dashboard.js',
       'routes/index.js',
       'routes/login.js',
       'routes/representatives.js',

@@ -37,7 +37,7 @@ module.exports = function (app) {
                   throw err;
                 }
                 req.session.user = req.body.user;
-                res.redirect('/dashboard');
+                res.redirect('/');
               });
             }
           });

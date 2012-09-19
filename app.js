@@ -96,8 +96,6 @@ require('./routes/index')(app);
 require('./routes/login')(app);
 // User creation
 require('./routes/user')(app);
-// User dashboard
-require('./routes/dashboard')(app, requireAuth);
 // Display and create campaigns
 require('./routes/campaign')(app, requireAuth);
 // Get OpenNorth Represent data

@@ -50,7 +50,7 @@ module.exports = function (app) {
       // If this function gets called, authentication was successful.
       // `req.user` property contains the authenticated user.
       req.session.user = req.user;
-      res.redirect('/dashboard');
+      res.redirect('/');
     }
   );
 };
