@@ -32,7 +32,6 @@ function compile(str, path) {
 var oneMonth = 1000 * 60 * 60 * 24 * 30;
 
 app.configure(function() {
-  // app.use(stylus.middleware(__dirname + '/public'));
   app.use(stylus.middleware({
     src: __dirname + '/styles',
     dest: __dirname + '/public',
@@ -40,7 +39,10 @@ app.configure(function() {
   }));
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  app.set('view options', { layout: false });
+  app.set('view options', {
+    layout: false,
+    pretty: process.env.NODE_ENV !== 'production'
+  });
   app.set('port', process.env.PORT || 5000);
   app.use(express.logger());
   app.use(express.bodyParser());
