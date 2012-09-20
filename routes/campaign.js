@@ -24,7 +24,7 @@ module.exports = function (app, requireAuth) {
   });
 
   // Display a campaign widget in an iframe.
-  app.get('/campaign/:id', function (req, res) {
+  app.get('/campaign/:id', requireAuth, function (req, res) {
     // Load the campaign.
     Campaign.findById(req.params.id, function (err, campaign) {
       if (err) {
@@ -44,7 +44,7 @@ module.exports = function (app, requireAuth) {
   });
 
   // Edit a campaign
-  app.get('/campaign/:id/edit', function (req, res) {
+  app.get('/campaign/:id/edit', requireAuth, function (req, res) {
     // Load the campaign.
     Campaign.findById(req.params.id, function (err, campaign) {
       if (err) {
@@ -64,7 +64,7 @@ module.exports = function (app, requireAuth) {
   });
 
   // Update a campaign
-  app.put('/campaign/:id', function (req, res) {
+  app.put('/campaign/:id', requireAuth, function (req, res) {
     // Load the campaign.
     Campaign.findById(req.params.id, function (err, campaign) {
       if (err) {
@@ -120,7 +120,7 @@ module.exports = function (app, requireAuth) {
   });
 
   // Delete campaign
-  app.del('/campaign/:id', function (req, res) {
+  app.del('/campaign/:id', requireAuth, function (req, res) {
     // Load the campaign.
     Campaign.findById(req.params.id, function (err, campaign) {
       if (err) {
