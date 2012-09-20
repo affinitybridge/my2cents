@@ -3,7 +3,7 @@
 - Improve UX/UI
 - Improve widget themeing
 - logout
-- add campaign edit forms. campaign delele
+- delete campaign
 - add campaign description text field
 - add widget embed code
 - add campaign example page

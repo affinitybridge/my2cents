@@ -13,8 +13,13 @@ module.exports = function (app, requireAuth) {
   // Create a campaign widget.
   app.post('/campaign', requireAuth, function (req, res) {
     var campaign = new Campaign(req.body.campaign);
-    campaign.save(function () {
-      res.redirect('/campaign/' + campaign._id.toHexString());
+    campaign.save(function (err) {
+      if (err) {
+        throw err;
+      }
+      else {
+        res.redirect('/campaign/' + campaign._id.toHexString());
+      }
     });
   });
 
@@ -36,6 +41,51 @@ module.exports = function (app, requireAuth) {
         res.send('404', 404);
       }
     });
+  });
+
+  // Edit a campaign
+  app.get('/campaign/:id/edit', function (req, res) {
+    // Load the campaign.
+    Campaign.findById(req.params.id, function (err, campaign) {
+      if (err) {
+        throw err;
+      }
+      else if (campaign) {
+        res.render('campaigns/edit', {
+          campaign: campaign,
+          pageTitle: campaign.title
+        });
+      }
+      else {
+        // If no campaign found display a 404.
+        res.send('404', 404);
+      }
+    });
+  });
+
+  // Update a campaign
+  app.put('/campaign/:id', function (req, res) {
+    // Load the campaign.
+    Campaign.findById(req.params.id, function (err, campaign) {
+      if (err) {
+        throw err;
+      }
+      else if (campaign) {
+        campaign.title = req.body.campaign.title;
+        campaign.script = req.body.campaign.script;
+        campaign.save(function (err) {
+          if (err) {
+            throw err;
+          }
+          else {
+            res.redirect('/campaign/' + campaign._id.toHexString());
+          }
+        });
+      }
+      else {
+        throw new Error("Campaign not found");
+      }
+    })
   });
 
   // A campaign widget.

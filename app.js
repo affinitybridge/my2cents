@@ -46,6 +46,7 @@ app.configure(function() {
   app.set('port', process.env.PORT || 5000);
   app.use(express.logger());
   app.use(express.bodyParser());
+  app.use(express.methodOverride());
   app.use(express.compress());
   app.use(express.static(__dirname + '/public', { maxAge: oneMonth }));
   app.use(express.cookieParser());

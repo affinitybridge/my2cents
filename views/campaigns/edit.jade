@@ -1,0 +1,6 @@
+extends ../layout
+
+block content
+  form(action='/campaign/#{campaign._id}', method='post')
+    input(type='hidden', name='_method', value='put')
+    != partial('campaigns/form', {locals: {campaign: campaign}})

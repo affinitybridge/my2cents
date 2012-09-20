@@ -3,7 +3,7 @@ extends ../layout
 block content
 
   p
-    a.btn.btn-primary(href='/campaign/#campaignId/edit') Edit Campaign
+    a.btn.btn-primary(href='/campaign/#{campaignId}/edit') Edit Campaign
 
   .center
     iframe(src='#{process.env.APP_URL}/campaign/#{campaignId}/iframe', width='300', height='700', frameborder='0')
