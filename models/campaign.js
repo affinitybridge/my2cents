@@ -6,6 +6,7 @@ var Campaign = new Schema();
 
 Campaign.add({
   title: String,
+  desc: String,
   script: String
 });
 
