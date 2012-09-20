@@ -11,7 +11,8 @@
 var express = require('express'),
     passport = require('passport'),
     stylus = require('stylus'),
-    config = require('./config');
+    config = require('./config'),
+    MongoStore = require('connect-mongo')(express);
 
 // Create the Express server.
 var app = module.exports = express.createServer();
@@ -50,7 +51,12 @@ app.configure(function() {
   app.use(express.compress());
   app.use(express.static(__dirname + '/public', { maxAge: oneMonth }));
   app.use(express.cookieParser());
-  app.use(express.session({secret: process.env.SESSION_SECRET || config.session_secret}));
+  app.use(express.session({
+    secret: process.env.SESSION_SECRET || config.session_secret,
+    store: new MongoStore({
+      url: process.env.MONGOLAB_URI || config.mongodb_url
+    })
+  }));
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(express.favicon('public/favicon.ico', { maxAge: oneMonth }));
