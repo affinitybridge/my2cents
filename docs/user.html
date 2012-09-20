@@ -7,7 +7,10 @@
       <span class="nx">user</span><span class="o">:</span> <span class="k">new</span> <span class="nx">User</span><span class="p">()</span>
     <span class="p">});</span>
   <span class="p">});</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>Create a user.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">app</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">newUser</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">newUser</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">newUser</span><span class="p">.</span><span class="nx">username</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+    <span class="nx">newUser</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">password</span><span class="p">;</span>
+
     <span class="nx">bcrypt</span><span class="p">.</span><span class="nx">genSalt</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">salt</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">bcrypt</span><span class="p">.</span><span class="nx">hash</span><span class="p">(</span><span class="nx">newUser</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span> <span class="nx">salt</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">hash</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
@@ -27,7 +30,7 @@
                 <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
                   <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
                 <span class="p">}</span>
-                <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+                <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="nx">newUser</span><span class="p">;</span>
                 <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
               <span class="p">});</span>
             <span class="p">}</span>
