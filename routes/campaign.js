@@ -85,7 +85,7 @@ module.exports = function (app, requireAuth) {
       else {
         throw new Error("Campaign not found");
       }
-    })
+    });
   });
 
   // A campaign widget.
