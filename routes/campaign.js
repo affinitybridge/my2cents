@@ -77,6 +77,7 @@ module.exports = function (app, requireAuth) {
       }
       else if (campaign) {
         campaign.title = req.body.campaign.title;
+        campaign.desc = req.body.campaign.desc;
         campaign.script = req.body.campaign.script;
         campaign.save(function (err) {
           if (err) {
