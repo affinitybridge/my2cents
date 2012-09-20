@@ -141,4 +141,21 @@ module.exports = function (app, requireAuth) {
       }
     });
   });
+
+  app.get('/campaign/:id/example', function (req, res) {
+    Campaign.findById(req.params.id, function (err, campaign) {
+      if (err) {
+        throw err;
+      }
+      else if (campaign) {
+        res.render('campaigns/example', {
+          pageTitle: campaign.title,
+          campaign: campaign
+        });
+      }
+      else {
+        res.send('404', 404);
+      }
+    });
+  });
 };
