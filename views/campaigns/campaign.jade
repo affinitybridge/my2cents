@@ -1,8 +1,9 @@
-extends layout
+extends ../layout
 
 block content
 
-  p This is the primary campaign page.
+  p
+    a.btn.btn-primary(href='/campaign/#campaignId/edit') Edit Campaign
 
   .center
     iframe(src='#{process.env.APP_URL}/campaign/#{campaignId}/iframe', width='300', height='700', frameborder='0')
