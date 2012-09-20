@@ -9,4 +9,7 @@ block content
     input.btn.btn-danger(type='submit', value='Delete Campaign')
 
   .center
+    p Embed code
+    p
+      input.widget-code(type='textbox', value='#{embedCode}')
     iframe(src='#{process.env.APP_URL}/campaign/#{campaignId}/iframe', width='300', height='700', frameborder='0')
