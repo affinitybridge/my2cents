@@ -1,5 +1,5 @@
 var represent = require('represent'),
-    representatives = require('../modules/representatives');
+    representatives = require('../lib/representatives');
 
 
 module.exports = function (app) {

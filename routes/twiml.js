@@ -1,4 +1,4 @@
-var minihash = require('../modules/minihash');
+var minihash = require('../lib/minihash');
 
 module.exports = function (app) {
   // Twilio App Voice request URL.
