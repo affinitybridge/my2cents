@@ -18,6 +18,26 @@ module.exports = function (app, requireAuth) {
     });
   });
 
+  // Display a campaign widget in an iframe.
+  app.get('/campaign/:id', function (req, res) {
+    // Load the campaign.
+    Campaign.findById(req.params.id, function (err, campaign) {
+      if (err) {
+        throw err;
+      }
+      else if (campaign) {
+        res.render('campaigns/campaign', {
+          campaignId: campaign._id,
+          pageTitle: campaign.title
+        });
+      }
+      else {
+        // If no campaign found display a 404.
+        res.send('404', 404);
+      }
+    });
+  });
+
   // A campaign widget.
   app.get('/campaign/:id/iframe', function (req, res) {
     // Load the campaign.
@@ -35,31 +55,11 @@ module.exports = function (app, requireAuth) {
           DemoNumber: process.env.DEMO_NUMBER,
           CampaignId: req.params.id
         };
-        res.render('campaign_iframe', {
+        res.render('campaigns/campaign_iframe', {
           pageTitle: campaign.title,
           twilioConfigJson: JSON.stringify(twilioConfig),
           // Use the `campaign_layout` Jade layout template.
           campaign: campaign
-        });
-      }
-      else {
-        // If no campaign found display a 404.
-        res.send('404', 404);
-      }
-    });
-  });
-
-  // Display a campaign widget in an iframe.
-  app.get('/campaign/:id', function (req, res) {
-    // Load the campaign.
-    Campaign.findById(req.params.id, function (err, campaign) {
-      if (err) {
-        throw err;
-      }
-      else if (campaign) {
-        res.render('campaign', {
-          campaignId: campaign._id,
-          pageTitle: campaign.title
         });
       }
       else {
