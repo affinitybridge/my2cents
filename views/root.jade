@@ -11,9 +11,7 @@ block content
         each campaign in campaigns
           li
             a(href="campaign/#{campaign.id}") #{campaign.title}
-    else
-      a(href='campaign/new') Create your first campaign
-      .
+      a.btn.btn-primary(href='campaign/new') Create Campaign
   else
     h2 Login
     form(action='/login', method='post')!= partial('users/form', {locals: {user: user}})

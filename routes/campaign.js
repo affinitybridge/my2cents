@@ -118,4 +118,21 @@ module.exports = function (app, requireAuth) {
       }
     });
   });
+
+  // Delete campaign
+  app.del('/campaign/:id', function (req, res) {
+    // Load the campaign.
+    Campaign.findById(req.params.id, function (err, campaign) {
+      if (err) {
+        throw err;
+      }
+      else if (campaign) {
+        campaign.remove();
+        res.redirect('/');
+      }
+      else {
+        throw new Error('Campaign not found');
+      }
+    });
+  });
 };

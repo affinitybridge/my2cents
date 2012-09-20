@@ -82,6 +82,18 @@
       <span class="k">else</span> <span class="p">{</span></pre></div>             </td>           </tr>                               <tr id="section-16">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-16">&#182;</a>               </div>               <p>If no campaign found display a 404.</p>             </td>             <td class="code">               <div class="highlight"><pre>        <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;404&#39;</span><span class="p">,</span> <span class="mi">404</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">});</span>
+  <span class="p">});</span></pre></div>             </td>           </tr>                               <tr id="section-17">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-17">&#182;</a>               </div>               <p>Delete campaign</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">app</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s1">&#39;/campaign/:id&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span></pre></div>             </td>           </tr>                               <tr id="section-18">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-18">&#182;</a>               </div>               <p>Load the campaign.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="nx">Campaign</span><span class="p">.</span><span class="nx">findById</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">campaign</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">campaign</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">campaign</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Campaign not found&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
   <span class="p">});</span>
 <span class="p">};</span>
 

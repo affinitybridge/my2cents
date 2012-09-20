@@ -4,6 +4,9 @@ block content
 
   p
     a.btn.btn-primary(href='/campaign/#{campaignId}/edit') Edit Campaign
+  form(action='/campaign/#{campaignId}', method='post')
+    input(type='hidden', name='_method', value='delete')
+    input.btn.btn-danger(type='submit', value='Delete Campaign')
 
   .center
     iframe(src='#{process.env.APP_URL}/campaign/#{campaignId}/iframe', width='300', height='700', frameborder='0')
