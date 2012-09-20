@@ -14,6 +14,10 @@ html
         .navbar-inner
           .container
             a.brand(href='/') My2Cents
+            if session.user
+              ul.nav.pull-right
+                li
+                  a(href='/logout') Logout
       #main
         .col-inner.clearfix
 
