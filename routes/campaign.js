@@ -35,7 +35,7 @@ module.exports = function (app, requireAuth) {
           DemoNumber: process.env.DEMO_NUMBER,
           CampaignId: req.params.id
         };
-        res.render('campaign', {
+        res.render('campaign_iframe', {
           pageTitle: campaign.title,
           twilioConfigJson: JSON.stringify(twilioConfig),
           // Use the `campaign_layout` Jade layout template.
@@ -57,7 +57,7 @@ module.exports = function (app, requireAuth) {
         throw err;
       }
       else if (campaign) {
-        res.render('campaign_iframe', {
+        res.render('campaign', {
           campaignId: campaign._id,
           pageTitle: campaign.title
         });

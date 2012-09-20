@@ -1,11 +1,8 @@
-extends campaign_layout
+extends layout
 
 block content
-  div.page-header
-    h2.title #{campaign.title}
-  #representatives
-  #phonescript
-    p #{campaign.script}
-  if process.env.DEBUG === 'true'
-    #log
-      h3 Event Log
+
+  p This is the primary campaign page.
+
+  .center
+    iframe(src='#{process.env.APP_URL}/campaign/#{campaignId}/iframe', width='300', height='700', frameborder='0')
