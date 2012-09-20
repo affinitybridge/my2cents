@@ -4,6 +4,8 @@ block content
 
   p
     a.btn.btn-primary(href='/campaign/#{campaignId}/edit') Edit Campaign
+  p
+    a.btn.btn-primary(href='/campaign/#{campaignId}/example') View example use
   form(action='/campaign/#{campaignId}', method='post')
     input(type='hidden', name='_method', value='delete')
     input.btn.btn-danger(type='submit', value='Delete Campaign')
