@@ -33,7 +33,7 @@ module.exports = function (app, requireAuth) {
       else if (campaign) {
         // Construct iframe embed code.
         var embedURL = process.env.APP_URL + '/campaign/' + campaign._id.toHexString() + '/iframe';
-        var embedCode = '<iframe src="' + embedURL + '" width="300" height="700" frameborder="0"></iframe>';
+        var embedCode = '<iframe src="' + embedURL + '" width="300" height="700" frameborder="0" scrolling="no"></iframe>';
 
         res.render('campaigns/campaign', {
           campaignId: campaign._id,

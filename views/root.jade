@@ -1,8 +1,5 @@
 extends layout
 
-block title
-  h1.title= pageTitle
-
 block content
   if session.user
     h2 Campaigns
@@ -11,6 +8,7 @@ block content
         each campaign in campaigns
           li
             a(href="campaign/#{campaign.id}") #{campaign.title}
+    else
       a.btn.btn-primary(href='campaign/new') Create Campaign
   else
     h2 Login

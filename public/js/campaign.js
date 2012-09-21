@@ -9,9 +9,13 @@
       url: '/representatives/' + position.coords.latitude + '/' + position.coords.longitude,
       type : "GET",
       success: function(data) {
-        $("#representatives").html(data);
+        $("#representatives .inner").html(data);
         $("button", "#representatives").button();
-        $('#widget').height($(window).height());
+        // make widget full height of the window.
+        $('#main').height($(window).height() - 2);
+        var elementHeights = $('.page-header').height() + $('#footer').height() + 20;
+        // This needs a set height to make the scroll bar work.
+        $('#representatives .inner').height($('#main').height() - elementHeights);
       },
       error: function(jqXHR, textStatus, errorThrown) {
         callLog('Representatives DB Error: ' + textStatus + ' ' + errorThrown);

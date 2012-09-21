@@ -3,4 +3,4 @@ extends ../layout
 block content
   form(action='/user', method='post')!= partial('users/form', {locals: {user: user}})
   p Already have an account? 
-      a(href='/login', title="View login page") Log in.
+      a(href='/', title="View login page") Log in.

@@ -2,11 +2,17 @@ extends campaign_layout
 
 block content
   div.page-header
-    h2.title #{campaign.title}
-    p #{campaign.desc}
+    .inner
+      h2.title #{campaign.title}
+      p #{campaign.desc}
   #representatives
+    .inner
   #phonescript
-    p #{campaign.script}
+    .inner
+      p #{campaign.script}
   if process.env.DEBUG === 'true'
     #log
       h3 Event Log
+  #footer
+    .inner
+      p Developed by Affinity Bridge
