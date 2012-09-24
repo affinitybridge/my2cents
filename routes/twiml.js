@@ -11,10 +11,12 @@ module.exports = function (app) {
     var hash = req.param('PhoneHash');
     var altered = false;
     // Has the dialed number been altered? ie: Is someone trying for free calls?
-    console.log('twiml.js');
-    console.log(number);
-    console.log(hash);
-    console.log(minihash.hash(number, process.env.SALT));
+    (function() {
+      console.log('twiml.js');
+      console.log(number);
+      console.log(hash);
+      console.log(minihash.hash(number, process.env.SALT));
+    })();
     if (minihash.hash(number, process.env.SALT) !== hash) {
       altered = true;
     }
