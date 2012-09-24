@@ -112,8 +112,6 @@ module.exports = function (app, requireAuth) {
           DemoNumber: process.env.DEMO_NUMBER,
           CampaignId: req.params.id
         };
-        console.log('TWILIO CONFIG');
-        console.log(JSON.stringify(twilioConfig));
         res.render('campaigns/campaign_iframe', {
           pageTitle: campaign.title,
           twilioConfigJson: JSON.stringify(twilioConfig),
