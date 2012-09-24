@@ -10,8 +10,9 @@
     var lint = require("./build/lint/lint_runner.js");
     var files = new jake.FileList();
     files.include("*.js");
-    files.include("*/*.js");
+    files.include("**/*.js");
     files.exclude("node_modules");
+    files.exclude("public/bootstrap/*");
     var options = nodeLintOptions();
     var passed = lint.validateFileList(files.toArray(), options, {});
     if (!passed) fail("Lint failed.");
@@ -68,6 +69,7 @@
       es5: true,
       jquery: true,
       browser: true,
+      laxcomma: true,
       predef: [
         "Twilio",       // Used by Twilio
         "TwilioConfig", // Used by Twilio
