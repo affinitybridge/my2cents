@@ -72,7 +72,7 @@
     showScript(clickedButton);
     if (TwilioConfig.DemoNumber) {
       callLog("DEMO MODE: Instead of calling " + number + ", this demo number gets called: " + TwilioConfig.DemoNumber);
-      number = TwilioConfig.DemoNumber;
+      //number = TwilioConfig.DemoNumber;
     }
     var params = {
       "PhoneNumber":number,

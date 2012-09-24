@@ -10,10 +10,6 @@ module.exports = function (app) {
     var number = req.param('PhoneNumber');
     var hash = req.param('PhoneHash');
     var altered = false;
-    // Use a demo number if variable present.
-    if (process.env.DEMO_NUMBER) {
-      number = process.env.DEMO_NUMBER;
-    }
     // Has the dialed number been altered? ie: Is someone trying for free calls?
     (function() {
       console.log('twiml.js');
@@ -27,6 +23,10 @@ module.exports = function (app) {
     })();
     if (minihash.hash(number, process.env.SALT) !== hash) {
       altered = true;
+    }
+    // Use a demo number if variable present.
+    if (process.env.DEMO_NUMBER) {
+      number = process.env.DEMO_NUMBER;
     }
     // Return [TWIML](http://www.twilio.com/docs/api/twiml) allowing Twilio to
     // place call.
