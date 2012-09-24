@@ -1,5 +1,6 @@
 var Campaign = require('../models/campaign'),
-    Capability = require('twilio').Capability;
+    Capability = require('twilio').Capability,
+    checkMobile = require('express-mobile-detection');
 
 module.exports = function (app, requireAuth) {
   // Present a form to create a campaign widget.
@@ -95,7 +96,7 @@ module.exports = function (app, requireAuth) {
   });
 
   // A campaign widget.
-  app.get('/campaign/:id/iframe', function (req, res) {
+  app.get('/campaign/:id/iframe', checkMobile(), function (req, res) {
     // Load the campaign.
     Campaign.findById(req.params.id, function (err, campaign) {
       if (err) {
