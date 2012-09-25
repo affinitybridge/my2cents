@@ -1,7 +1,7 @@
 extends campaign_layout
 
 block content
-  div.page-header
+  div.widget-header
     .inner
       h2.title #{campaign.title}
       p #{campaign.desc}
@@ -10,8 +10,8 @@ block content
   #phonescript
     .inner
       p #{campaign.script}
-      button.hangup.ui-button.ui-state-default.ui-button-text-only.ui-corner-all.ui-widget
-        span.ui-button-text Hangup
+      button.hangup.btn-danger
+        span Hangup
   if process.env.DEBUG === 'true'
     #log
       h3 Event Log

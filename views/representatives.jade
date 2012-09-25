@@ -12,5 +12,5 @@ each rep in reps
         if rep.phone
           li.phone #{rep.phone}
             = " "
-            button.call(data-phone="#{rep.phone}", data-hash="#{rep.phoneHash}") Call Now
-            button.hangup Hangup
+            button.call.btn(data-phone="#{rep.phone}", data-hash="#{rep.phoneHash}") Call Now
+            button.hangup.btn-danger Hangup

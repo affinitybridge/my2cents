@@ -10,10 +10,9 @@
       type : "GET",
       success: function(data) {
         $("#representatives .inner").html(data);
-        $("button", "#representatives").button();
         // make widget full height of the window.
         $('#main').height($(window).height() - 2);
-        var elementHeights = $('.page-header').height() + $('#footer').height() + 20;
+        var elementHeights = $('.widget-header').height() + $('#footer').height() + 20;
         // This needs a set height to make the scroll bar work.
         $('#representatives .inner').height($('#main').height() - elementHeights);
       },
@@ -87,7 +86,6 @@
 
   function showScript(clickedButton) {
     var id = $(clickedButton).parents('div.rep').attr('data-id');
-    $('#representatives div.rep[data-id!="' + id + '"]').slideUp(200);
     $("#phonescript").show();
   }
 
@@ -106,9 +104,9 @@
 
   $(".showScript").on("click", function(event) {
     showScript();
-  }).button();
+  });
 
   $(".hideScript").on("click", function(event) {
     hideScript();
-  }).button();
+  });
 }());
