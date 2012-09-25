@@ -63,7 +63,7 @@
     callLog("Call ended");
     hideScript();
     $('.call').show();
-    $('.hangup').hide();
+    $('#representatives .hangup').hide();
   });
 
   function call(number, hash, clickedButton) {
