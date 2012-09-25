@@ -37,7 +37,7 @@
     "passport-local": "~0.1.3",
     "bcrypt": "~0.7.2",
     "connect-mongo": "~0.2.0",
-    "express-mobile-detection": "0.0.1"
+    "connect-mobile-detection": "~0.0.3"
   },
   "devDependencies": {
     "mocha": "~1.2.0",

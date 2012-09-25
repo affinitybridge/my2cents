@@ -1,6 +1,6 @@
 var Campaign = require('../models/campaign'),
     Capability = require('twilio').Capability,
-    checkMobile = require('express-mobile-detection');
+    checkMobile = require('connect-mobile-detection');
 
 module.exports = function (app, requireAuth) {
   // Present a form to create a campaign widget.

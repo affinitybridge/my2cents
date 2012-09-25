@@ -12,8 +12,7 @@ var express = require('express'),
     passport = require('passport'),
     stylus = require('stylus'),
     config = require('./config'),
-    MongoStore = require('connect-mongo')(express),
-    checkMobile = require('express-mobile-detection');
+    MongoStore = require('connect-mongo')(express);
 
 // Create the Express server.
 var app = module.exports = express.createServer();
