@@ -10,6 +10,8 @@ block content
   #phonescript
     .inner
       p #{campaign.script}
+      button.hangup.ui-button.ui-state-default.ui-button-text-only.ui-corner-all.ui-widget
+        span.ui-button-text Hangup
   if process.env.DEBUG === 'true'
     #log
       h3 Event Log

@@ -100,7 +100,7 @@
     call($(this).attr('data-phone'), $(this).attr('data-hash'), this);
   });
 
-  $("#representatives").on("click", "button.hangup", function(event) {
+  $("#representatives, #phonescript").on("click", "button.hangup", function(event) {
     hangup(this);
   });
 
