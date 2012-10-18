@@ -31,7 +31,7 @@
     "jade": "~0.26.0",
     "stylus": "~0.27.1",
     "twilio": "git://github.com/affinitybridge/node-twilio.git#8eb0b392ea",
-    "represent": "~0.1.0",
+    "represent": "~0.2.0",
     "mongoose": "~2.7.0",
     "passport": "~0.1.10",
     "passport-local": "~0.1.3",
