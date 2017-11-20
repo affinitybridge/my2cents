@@ -101,7 +101,7 @@ To only build the docs run `$ jake docs`
 
 ## Tests
 
-[Mocha](http://visionmedia.github.com/mocha/) is used for testing.
+[Mocha](https://mochajs.org/) is used for testing.
 
 To run the tests run either of the following commands:
 
